@@ -277,5 +277,114 @@ This log provides a chronological record of all phases, actions, command executi
 
 **Phase 3 Status**: PASSED.
 
+---
+
+## Phase 4A: Application Foundation, Global Styles, Header, and Hero
+
+- **Date**: 2026-10-22
+- **Lead / Operator**: Senior Frontend Engineer & Reverse-Engineering Specialist
+- **Phase Objective**: Implement the Next.js application foundation, global styles and typography, sticky header with responsive navigation drawer, and the live homepage hero section with verified copy and resolved metrics.
+
+---
+
+### 1. Step-by-Step Activities
+
+1. **Step 1 — Protected Current Work with Git Pre-Implementation Checkpoint**:
+   - Initialized Git repository on `main` branch.
+   - Configured `.gitignore` to exclude `.next/`, `node_modules/`, `scratch/`, and build artifacts.
+   - Committed reference pack and project planning documents:
+     - Checkpoint Commit Hash: `33114f6c0a11e4096a0ac05a742bdaa1c8877e3d`
+     - Commit Message: `chore: pre-implementation checkpoint - project plan, reconnaissance docs, and reference pack`
+
+2. **Step 2 — Selected Compatible Dependencies**:
+   - Runtime: Node.js `v22.23.2` and npm `10.9.8`.
+   - Dependency selection:
+     - `next`: `15.1.7` (App Router)
+     - `react`: `19.0.0`, `react-dom`: `19.0.0`
+     - `tailwindcss`: `3.4.17`, `autoprefixer`: `10.4.20`, `postcss`: `8.4.49` (Selected for full compatibility with live site `--tw-` CSS variable output and to avoid PostCSS 4 scanner source issues).
+     - `lucide-react`: `0.475.0` (Exact SVG vectors for icons).
+     - `clsx`: `2.1.1`, `tailwind-merge`: `3.0.1`.
+   - All versions pinned in `package.json` without `@latest`.
+
+3. **Step 3 — Created Application Foundation**:
+   - Copied 6 verified assets from `reference/assets/` to `public/` and `public/landing/` (`logo.png`, `favicon.svg`, `apple-touch-icon.png`, `hero-product.png`, `pos-mockup.png`, `inventory-mockup.png`).
+   - Configured `tsconfig.json` for Next.js App Router with path alias `@/*`.
+   - Configured `next.config.ts` with `images: { unoptimized: true }`.
+   - Set up `src/app/layout.tsx` with Google Fonts (`Inter` and `Playfair Display`) and metadata matching live site.
+
+4. **Step 4 — Implemented Global Styles & Design Tokens**:
+   - Configured `tailwind.config.ts` and `src/app/globals.css` with exact `:root` variables:
+     - Warm ivory background: `hsl(37, 70%, 97%)` (`#FAF8F4`)
+     - Deep espresso foreground: `hsl(16, 49%, 12%)` (`#2D160E`)
+     - Gold accents: `#c9a96e` (`--gold-500`), `#9a7209` (`--gold-700`)
+     - Recreated live classes: `.landing-page`, `.landing-nav`, `.landing-hero-bg`, `.landing-stat-card`, `.landing-mockup-frame`, `.landing-mockup-glow`, `.glass-card`, `.icon-gradient-gold`, `.animate-float`.
+
+5. **Step 5 — Implemented Sticky Header & Navigation**:
+   - Created `src/components/Navbar.tsx`:
+     - Logo (`/logo.png`) linking to `/`.
+     - Desktop links: `Features` (`#features`), `Inventory` (`#inventory`), `Compliance` (`#compliance`), `Pricing` (`#pricing`).
+     - Actions: `Sign In` (`/login`), `Request Demo` (`#cta`).
+     - Sticky glassmorphic navbar with `backdrop-filter: blur(20px) saturate(1.2)`.
+     - Mobile hamburger toggle and slide-down drawer with body scroll lock.
+     - Accessible attributes (`aria-label`, `aria-expanded`).
+
+6. **Step 6 — Recreated Live Hero & Resolved Conflicting Metrics**:
+   - Created `src/components/Hero.tsx`:
+     - Investigated discrepancy between Phase 1 generic stats array and live hero DOM.
+     - Reconciled with live server-rendered HTML and screenshots:
+       - Floating simulation card: `Today's Sales` `DEMO` `₹4,85,200` with trending-up icon.
+       - 4 hero stat cards: `500+` `Active Jewelers`, `10,000+` `Daily Transactions`, `99.99%` `System Uptime`, `< 15 mins` `Support SLA`.
+       - Trust badges below CTAs: `BIS Hallmarking Ready`, `GST Auto-Calculation`, `Built for India`.
+     - Live headline: *"Grow your jewellery business with Octis."* with gradient accent on "Octis."
+     - Product mockup container with floating card and subtle radial glow.
+
+7. **Step 7 — Executed Project Checks & Local Verification**:
+   - `npx tsc --noEmit`: 0 TypeScript errors.
+   - `npm run build`: Production static compilation succeeded (4/4 pages).
+   - Dev server started on `http://localhost:3000`: Returned HTTP `200 OK` (49,377 bytes).
+   - Browser subagent verified rendering on Desktop (1440 × 900) and Mobile (390 × 844), including mobile drawer toggle.
+   - Captured verification screenshots and saved to `reference/screenshots/`:
+     - `local_verification_desktop_1440.png` (viewport 1440 × 900, image 1783 × 985 px)
+     - `local_verification_mobile_390.png` (viewport 390 × 844, image 627 × 939 px)
+     - `local_verification_mobile_menu_open.png` (viewport 390 × 844, image 627 × 939 px)
+   - Zero horizontal scroll or overflow detected.
+
+---
+
+### 2. Files Created and Updated
+
+- `package.json` — Pinned Next.js 15, React 19, Tailwind CSS 3.4 dependencies.
+- `package-lock.json` — Pinned dependency lockfile.
+- `tsconfig.json` — Strict TypeScript configuration.
+- `next.config.ts` — Next.js configuration.
+- `tailwind.config.ts` — Design token and typography mapping.
+- `postcss.config.mjs` — PostCSS configuration.
+- `public/*` — Verified public media assets (`logo.png`, `favicon.svg`, mockups).
+- `src/app/globals.css` — Global styles, variables, and landing classes.
+- `src/app/layout.tsx` — Root layout with Google Fonts and SEO metadata.
+- `src/app/page.tsx` — Main landing page assembling Navbar and Hero.
+- `src/components/Navbar.tsx` — Responsive sticky navigation header and drawer.
+- `src/components/Hero.tsx` — Reconstructed hero section and metrics bar.
+- `src/lib/utils.ts` — Class name merge utility.
+- `.gitignore` — Excluded build artifacts and scratch files.
+- `reference/screenshots/local_verification_*` — Local rendered verification screenshots.
+- `docs/implementation-log.md` — Appended Phase 4A records while preserving earlier phases.
+
+---
+
+### 3. Acceptance Criteria Verification
+
+- [x] Git protects the original reference pack and documentation in a checkpoint commit (`33114f6`).
+- [x] The pinned dependencies install successfully under the existing Node.js runtime (`v22.23.2`).
+- [x] The local Next.js application starts and builds successfully (`npm run build` exits 0).
+- [x] Global styling uses the documented design tokens.
+- [x] The responsive header and navigation work across desktop and mobile.
+- [x] The existing live hero is reproduced using the original asset and verified copy.
+- [x] Conflicting metrics are resolved and reconciled with live server-rendered HTML evidence.
+- [x] The implementation log records actual results, verification screenshots, and remaining gaps.
+
+**Phase 4A Status**: PASSED.
+
+
 
 
