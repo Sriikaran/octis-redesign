@@ -16,7 +16,7 @@ The Octis project encompasses two distinct application tiers within a single Nex
 
 Every route corresponds directly to views observed in `OCTIS_UIUX_Complete_Audit_and_Fix_Blueprint.docx` and the 24 audit evidence screenshots in `OCTIS_UIUX_Audit_Evidence`:
 
-| Route Path | Module Area | Evidence Screenshot | Primary User Job & Blueprint Scope |
+| Route Path | Module Area | Evidence / Source | Primary User Job & Blueprint Scope |
 |:---|:---|:---|:---|
 | `/dashboard` | Executive Dashboard | `Dashboard_01`, `Dashboard_02` | Monitor sales, daily liquidity, bullion rates, cash/gold receivables, and operational action alerts (`DASH-01`, `DASH-02`). |
 | `/sales` | Sales & Billing Management | `POS_04` | Transaction directory, date range filtering, return-bill master-detail selection (`POS-04`, `POS-05`). |
@@ -28,6 +28,12 @@ Every route corresponds directly to views observed in `OCTIS_UIUX_Complete_Audit
 | `/parties` | Vendor & Bullion Parties | `Parties_01`, `Parties_02`, `Parties_05` | Reconciled Outstanding view matching summary cards, party groups, mobile filter wrapping (`PART-01`, `PART-02`, `PART-07`). |
 | `/parties/[id]` | Party Dossier & Ledger | `Parties_03`, `Parties_04` | Unified mini-ledger, explicit running balance direction ("We Owe" / "Party Owes"), metal balance polarity, responsive columns (`PART-03`, `PART-04`, `PART-05`, `PART-06`). |
 | `/bi` | Business Intelligence Hub | `BI_01`, `BI_02`, `BI_03`, `BI_04` | Five labeled analytics views, strict Indian Rupee 2-decimal formatting, graph canvas auto-fit/zoom controls, operational deep-link drawer, date range filter, risk exposure hierarchy (`BI-01` to `BI-06`). |
+| `/schemes` | Gold Savings Schemes | Blueprint Table 6 | Responsive scheme search, lifecycle-restricted installment actions, single-page count badges, and semantic status indicators (`SCH-01` to `SCH-04`). |
+| `/staff` | Staff & Attendance | Blueprint Table 7 | Attendance acronym legend, explicit salary payable breakdown popovers, structured profile sections, bulk action confirmation, search, and shared date context (`STAFF-01` to `STAFF-07`). |
+| `/procurement` | Procurement & POs | Blueprint Table 8 | Explicit transaction timestamps, duplicate PO number warning/detection, PO lifecycle status, and supplier voucher deep links (`PROC-01` to `PROC-04`). |
+| `/approvals` | Management Approvals | Blueprint Table 9 | Actionable approval queues, clear consequences with required rejection reasons, status segregation tabs, and decision audit timeline (`APP-01` to `APP-04`). |
+| `/reports` | Management Reports | Blueprint Table 10 | Persistent date/store filter context banner, canonical report totals matching Party ledgers, descriptive export naming, and responsive summaries (`REP-01` to `REP-04`). |
+| `/settings` | System Settings & Roles | Blueprint Table 11 | Task-oriented category navigation, multi-store scope badges (Global vs Branch), destructive action confirmation, unambiguous save states, and role permission locking (`SET-01` to `SET-05`). |
 
 ---
 
@@ -119,12 +125,27 @@ flowchart TD
 - Implement visible required field indicators and inline notes validation (`POS-03`).
 - Implement persistent return-bill row selection (`POS-04`, `POS-05`).
 
-### Phase 6D: Safe Inventory & Staged Bulk Inward
-- Implement `/inventory` and `/inventory/bulk`.
-- Implement safe tag search boundary with controlled recovery state (`INV-01`).
-- Build structured bulk entry wizard with grouped semantic fields (`INV-02`).
-- Normalize master catalog text casing (`INV-04`) and clean transformation cards (`INV-05`).
-- Ensure zero horizontal overflow on mobile viewports (`INV-04`).
+### Phase 6D: Safe Inventory, Bulk Inward & Supplementary Modules
+- **Inventory & Inward**:
+  - Implement `/inventory` and `/inventory/bulk`.
+  - Implement safe tag search boundary with controlled recovery state (`INV-01`).
+  - Build structured bulk entry wizard with grouped semantic fields (`INV-02`).
+  - Normalize master catalog text casing (`INV-04`) and clean transformation cards (`INV-05`).
+  - Ensure zero horizontal overflow on mobile viewports (`INV-04`, `UX-MOBILE`).
+- **Gold Schemes (`/schemes`)**:
+  - Implement responsive scheme search and lifecycle-restricted installment actions (`SCH-01`, `SCH-02`).
+  - Display single-page count badges and semantic status indicators (`SCH-03`, `SCH-04`).
+- **Staff & Payroll (`/staff`)**:
+  - Mount attendance acronym legend and explicit salary breakdown popovers (`STAFF-01`, `STAFF-02`).
+  - Group structured profile sections, bulk action confirmation, search, and shared date context (`STAFF-03` to `STAFF-07`).
+- **Procurement & Purchase Orders (`/procurement`)**:
+  - Display explicit timestamps, client-side duplicate PO detection warning, PO status badges, and supplier voucher deep links (`PROC-01` to `PROC-04`).
+- **Management Approvals (`/approvals`)**:
+  - Build actionable approval queues, clear consequences with required rejection reasons, status segregation tabs, and decision audit timeline (`APP-01` to `APP-04`).
+- **Management Reports (`/reports`)**:
+  - Mount persistent date/store filter context banner, canonical report totals matching Party ledgers, descriptive export naming, and responsive mobile summaries (`REP-01` to `REP-04`).
+- **System Settings & Roles (`/settings`)**:
+  - Organize task-oriented category navigation, multi-store scope badges (Global vs Branch), destructive action confirmation, unambiguous save states, and role permission locking (`SET-01` to `SET-05`).
 
 ### Phase 6E: Customer Management & KYC Security
 - Implement `/customers` and `/customers/[id]`.
@@ -159,5 +180,11 @@ flowchart TD
 | **KYC Privacy** | Customers (`/customers/[id]`) | Aadhaar and PAN masked by default; unmasks only on explicit user click. |
 | **Graph Viewport Bounds** | BI (`/bi`) | Graph nodes fit completely within canvas on load and tab change without clipping. |
 | **Operational Deep Links** | BI Drawer | Clicking "View Ledger" in BI drawer navigates to `/parties/[id]#ledger`. |
+| **Scheme Lifecycle** | Schemes (`/schemes`) | Matured schemes disallow installment payment; display POS redemption action. |
+| **Attendance Legend** | Staff (`/staff`) | Attendance codes (P, H, A, L) display visible explanatory legend and tooltips. |
+| **PO Collision Detection** | Procurement (`/procurement`) | Entering existing PO number triggers immediate client validation warning. |
+| **Approval Rejection Reason** | Approvals (`/approvals`) | Rejecting request requires non-empty reason text before submission. |
+| **Report Filter Context** | Reports (`/reports`) | Report header displays active date range and branch scope; export filename matches. |
+| **Settings Scope Badges** | Settings (`/settings`) | Every setting explicitly displays `Global Chain Setting` or `Branch-Specific` badge. |
 | **Responsive Integrity** | All ERP Modules | Zero horizontal scroll on mobile (390px); table converts to card representation. |
 | **Keyboard Accessibility** | Global Shell & Modals | Full tab navigation cycle, visible focus rings, escape key dismisses drawers. |

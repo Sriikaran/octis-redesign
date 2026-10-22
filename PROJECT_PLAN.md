@@ -86,19 +86,24 @@ flowchart TD
   - Clean production build and zero horizontal overflow across all viewports.
 - **Milestone A Sign-off**: Gate authorized to commence Milestone B planning and mapping.
 
-### Phase 5: Blueprint Requirements Mapping and ERP Scope Preparation (Current)
-- **Objective**: Convert `OCTIS_UIUX_Complete_Audit_and_Fix_Blueprint.docx` and the 24 audit screenshots in `OCTIS_UIUX_Audit_Evidence` into a traceable implementation map and ERP architecture plan.
-- **Deliverables**:
-  - `docs/blueprint-implementation-map.md`: Traceable matrix covering all 38 core and supplementary requirements.
-  - `docs/erp-implementation-plan.md`: Evidence-based route and component architecture preserving `/` and `/login`.
-  - Updated `PROJECT_PLAN.md` and `docs/implementation-log.md`.
+### Phase 5: Blueprint Requirements Mapping and ERP Scope Preparation (COMPLETED)
+- **Objective**: Convert `OCTIS_UIUX_Complete_Audit_and_Fix_Blueprint.docx` and the 24 audit screenshots in `OCTIS_UIUX_Audit_Evidence` into an initial traceable implementation map and ERP architecture plan.
+- **Deliverables**: Initial `docs/blueprint-implementation-map.md` and `docs/erp-implementation-plan.md`.
+
+### Phase 5A: Requirement Traceability and Coverage Validation (Current)
+- **Objective**: Validate 100% census and traceability of every actionable recommendation from the blueprint before beginning ERP development.
+- **Accomplishments**:
+  - Reconciled complete inventory: 28 Core Issues, 2 Dashboard Issues, 28 Supplementary Module Review Items, and 11 Cross-Cutting Architectural Requirements (69 total actionable source items).
+  - Explicitly resolved all item overlaps and mapped shared implementation primitives (`DateRangeFilter`, `SemanticBalanceBadge`, `ResponsiveDataTable`, `SafeTagSearchInput`, `ErpBreadcrumbs`, `formatIndianCurrency`).
+  - Separated 62 frontend-only mockable items from 7 production backend constraints.
+  - Updated `docs/blueprint-implementation-map.md` and `docs/erp-implementation-plan.md`.
 - **Constraint**: Zero application source code modifications; no packages installed.
 
 ### Phase 6: Milestone B ERP Module Implementation
 - **Phase 6A — ERP Foundation & Shared Architecture**: App Router `(erp)` route group, `ErpShell`, persistent sidebar, `DateRangeFilter`, and canonical mock stores.
 - **Phase 6B — Financial Trust & Safety (P0 Issues)**: Reconciled `/parties` directory & ledger (`PART-01` to `PART-07`), semantic balance badges (`CUST-03`), and safe inventory tag error boundary (`INV-01`).
 - **Phase 6C — Core POS & Sales Terminal (P1 Issues)**: Progressive loading shell (`POS-01`), integrated Metal Exchange deduction (`POS-02`), required notes validation (`POS-03`), and return bill selection (`POS-04`, `POS-05`).
-- **Phase 6D — Safe Inventory & Staged Bulk Inward**: Bulk entry wizard (`INV-02`), normalized casing (`INV-04`), clean card hierarchy (`INV-05`), and mobile table prevention (`INV-04`).
+- **Phase 6D — Safe Inventory, Bulk Inward & Supplementary Modules**: Bulk entry wizard (`INV-02`), normalized casing (`INV-04`), Gold Schemes (`SCH-01`–`SCH-04`), Staff & Payroll (`STAFF-01`–`STAFF-07`), Procurement (`PROC-01`–`PROC-04`), Approvals (`APP-01`–`APP-04`), Reports (`REP-01`–`REP-04`), Settings (`SET-01`–`SET-05`).
 - **Phase 6E — Customer Management & KYC Privacy**: Persistent text navigation (`CUST-01`), masked Aadhaar/PAN fields (`CUST-02`), 360 profile dossier (`CUST-04`, `CUST-05`).
 - **Phase 6F — Business Intelligence & Graph Drill-Through**: Labeled BI tabs (`BI-01`), Indian rupee 2-decimal formatting (`BI-02`), auto-fit React Flow graph canvas (`BI-03`), operational deep links (`BI-04`), period filters (`BI-05`), and exposure risk hierarchy (`BI-06`).
 
