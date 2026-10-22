@@ -799,6 +799,160 @@ This log provides a chronological record of all phases, actions, command executi
 
 **Phase 5A Status**: PASSED.
 
+---
+
+## Phase 6A: ERP Foundation, Financial Trust, and Safe Inventory Lookup
+
+- **Date**: 2026-10-23
+- **Lead / Operator**: Senior Frontend Engineer & Reverse-Engineering Specialist
+- **Phase Objective**: Implement the first ERP development phase under App Router route group `src/app/(erp)/`: build the reusable ERP application shell with persistent labeled navigation, financial and metal formatting primitives, a canonical local Party store with mathematical parity, Party directory and detail ledger views, safe inventory tag lookup with controlled recovery state, and a working dashboard entry point, while strictly preserving the public marketing homepage (`/`) and public login gateway (`/login`).
+
+---
+
+### 1. Step-by-Step Activities
+
+1. **Step 1 — Audited Baseline & Protected Completed Clones**:
+   - Inspected Git status: working tree clean at commit `8dd9adc`.
+   - Verified that `/` (marketing homepage with all 10 sections) and `/login` (public authentication gateway) remain completely unchanged and operational.
+   - Pinned runtime versions confirmed: Next.js `15.1.7`, React `19.0.0`, Tailwind CSS `3.4.17`, TypeScript `5.7.3`, Node.js `v22.23.2`.
+
+2. **Step 2 — Financial & Metal Formatting Primitives (`GEN-01`, `GEN-02`)**:
+   - Created `src/lib/erp/formatters.ts`:
+     - `formatIndianCurrency`: Enforces strict Indian Rupee formatting (`₹ xx,xx,xxx.xx`) with exact 2-decimal precision (e.g. `₹57,03,278.80`).
+     - `formatGoldWeight`: Fixed 3-decimal precision for grams with explicit units (e.g. `24.500 g`), with epsilon decimal rounding avoiding IEEE 754 float representation bugs.
+     - `formatDate`: Standardized date/time representation using `en-IN` conventions.
+     - `resolveFinancialDirection` & `resolveMetalDirection`: Plain-English semantic direction resolver (We Owe Vendor, Customer Owes, Store Credit, Vendor Owes Us, Metal Payable, Metal Receivable) that eliminates dangerous red/green-only ambiguity (`GEN-01`).
+   - Created semantic components:
+     - `src/components/erp/SemanticBalanceBadge.tsx`: Directional financial badge combining custom badges, icons (`ArrowUpRight`, `ArrowDownLeft`, `CheckCircle2`), uppercase short labels, and accessible `aria-label`.
+     - `src/components/erp/MetalBalanceBadge.tsx`: Dedicated bullion weight badge displaying weight in grams, purity standard (`22K (916)`, `Fine 999.0`), and explicit direction.
+     - `src/components/erp/FinancialMetric.tsx`: Standardized metric card communicating metric title, formatted figure, directional badge, and contextual subtext.
+
+3. **Step 3 — Canonical Local Demonstration Party Store (`PART-01`, `PART-02`, `PART-03`)**:
+   - Created `src/lib/erp/partyStore.ts`:
+     - Modeled relational entities between Party records (id, name, code, category, phone, city, GSTIN, PAN, terms) and transaction vouchers (debit, credit, metalDebitGrams, metalCreditGrams, voucherType, runningFinancialBalance, runningMetalBalanceGrams).
+     - Deterministic demonstration seed data covering bullion dealers, ornament manufacturers, and retail customers with snapshot timestamp `2024-10-22T10:00:00.000Z`.
+     - Typed selector functions:
+       - `getPartyLedger(partyId)`: Reconciles chronologically ordered vouchers with exact running balances.
+       - `getPartySummaryMetrics(partyId)`: Derives cumulative debits, credits, net financial balance, and metal balance directly from the ledger vouchers.
+       - `getParties(filters)`: Returns directory list with derived balances.
+       - `getPartyDirectorySummary()`: Computes overall directory totals with strict segregation between Payables, Receivables, and Advances (resolving `PART-03`).
+     - Single-source mathematical parity guaranteed: Directory summary cards, party profile headers, and ledger vouchers use identical data.
+
+4. **Step 4 — Safe Inventory Store & Tag Resolution (`INV-01`, `INV-03`, `INV-04`)**:
+   - Created `src/lib/erp/inventoryStore.ts`:
+     - Hallmarked stock inventory items with BIS HUID tags (`HUID91`, `HUID75`, etc.), purity standards, gross weights, net weights, stone deductions, making charges, and retail prices.
+     - `resolveInventoryTag(rawQuery)`: Multi-strategy safe tag resolver that normalizes casing and whitespace, matches tags or HUIDs, and returns a controlled `TagLookupResult` (`{ success, item, isRecoverable, suggestedTags }`) without throwing unhandled exceptions or leaking database errors.
+
+5. **Step 5 — Reusable ERP Application Shell**:
+   - Created App Router route group `src/app/(erp)/layout.tsx` providing isolated ERP styling without affecting `/` or `/login`.
+   - Created `src/components/erp/ErpShell.tsx`: Root shell managing sidebar state, landmarks, and responsive layouts.
+   - Created `src/components/erp/ErpSidebar.tsx`: High-contrast persistent sidebar featuring text labels and icons for all audited modules, active pill states, local demo mode badge, and a shortcut link to the public marketing site.
+   - Created `src/components/erp/ErpTopBar.tsx`: Sticky topbar displaying a persistent disclaimer banner: *"Demo interface — uses local sample data and is not connected to production Octis services."*, live bullion ticker chip (`24K: ₹7,950/g | 22K: ₹7,285/g`), and cashier session chip.
+   - Created `src/components/erp/ErpMobileNav.tsx`: Slide-over drawer with Escape key listener and body scroll lock for viewports < 1024px.
+   - Created `src/components/erp/ErpBreadcrumbs.tsx`: Accessible hierarchical navigation breadcrumbs.
+   - Created `src/components/erp/ErpPageHeader.tsx`: Unified page header with title, description, breadcrumbs, back button, actions slot, and canonical timestamp indicator.
+
+6. **Step 6 — Implemented All Phase 6A Working Views & Route Placeholders**:
+   - `src/app/(erp)/dashboard/page.tsx`: Working ERP entry point with key financial metrics, fast tag lookup bar, and module quick links.
+   - `src/app/(erp)/parties/page.tsx`: Reconciled Party directory with search by name/code/phone, category tabs (Vendors, Bullion, Customers), financial summary cards, desktop data table, and responsive mobile cards.
+   - `src/app/(erp)/parties/[id]/page.tsx`: Party detail dossier with account identity, net running position badges, financial reconciliation breakdown, complete chronological ledger with running balances, and controlled not-found state for invalid IDs.
+   - `src/app/(erp)/inventory/page.tsx`: Inventory stock catalog with tag search spotlight, category/status filters, desktop table, and mobile cards.
+   - `src/app/(erp)/inventory/item/[tag]/page.tsx`: Safe item detail view displaying complete jewellery specs, BIS HUID, and valuation. For unknown tags (e.g. `TAG-INVALID-404`), renders a controlled error recovery card with search-again input and clickable suggested tags (`INV-01`).
+   - Prepared clean, non-misleading placeholder views for scheduled routes (`/sales`, `/sales/new`, `/customers`, `/customers/[id]`, `/bi`) detailing their planned phases.
+
+7. **Step 7 — Automated Testing & Verification**:
+   - Created `test/erp-foundation.test.ts` using Node.js 22 built-in test runner with native TypeScript type stripping (`node --experimental-strip-types --test`).
+   - Added `"test"` script to `package.json`.
+   - All 8 unit tests passed cleanly:
+     - Financial Formatter (Indian Rupee 2-decimal precision)
+     - Weight Formatter (milligram 3-decimal precision)
+     - Date Formatter
+     - Financial Direction Semantics (`GEN-01`)
+     - Metal Direction Semantics
+     - Party Mathematical Parity (`PART-01`, `PART-02`)
+     - Party Directory Summary Segregation (`PART-03`)
+     - Inventory Safe Tag Lookup & Controlled Recovery (`INV-01`)
+   - `npx tsc --noEmit`: 0 TypeScript errors.
+   - `npm run build`: Production static compilation succeeded across all 12 routes.
+   - Verified all 12 routes return HTTP `200 OK` (`/`, `/login`, `/dashboard`, `/parties`, `/parties/pty-ven-001`, `/parties/unknown-id`, `/inventory`, `/inventory/item/TAG-GLD-101`, `/inventory/item/TAG-INVALID-404`, `/sales`, `/customers`, `/bi`).
+   - Browser Subagent verified Desktop (1440 × 900) and Mobile (390 × 844) layouts with zero horizontal overflow.
+
+---
+
+### 2. Files Created and Updated
+
+- [src/lib/erp/formatters.ts](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/lib/erp/formatters.ts) — Indian Rupee, gold weight, and semantic direction formatters (`GEN-01`, `GEN-02`).
+- [src/components/erp/SemanticBalanceBadge.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/erp/SemanticBalanceBadge.tsx) — Non-color-dependent directional balance badges.
+- [src/components/erp/MetalBalanceBadge.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/erp/MetalBalanceBadge.tsx) — Fine gold/bullion weight badge with purity standards.
+- [src/components/erp/FinancialMetric.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/erp/FinancialMetric.tsx) — Reusable financial summary card.
+- [src/lib/erp/partyStore.ts](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/lib/erp/partyStore.ts) — Canonical local Party data store and reconciliation selectors (`PART-01` to `PART-03`).
+- [src/lib/erp/inventoryStore.ts](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/lib/erp/inventoryStore.ts) — Canonical stock catalog and safe tag resolution (`INV-01`).
+- [src/components/erp/ErpBreadcrumbs.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/erp/ErpBreadcrumbs.tsx) — Standardized hierarchical breadcrumbs.
+- [src/components/erp/ErpPageHeader.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/erp/ErpPageHeader.tsx) — Standard ERP page header with breadcrumbs and timestamp.
+- [src/components/erp/ErpSidebar.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/erp/ErpSidebar.tsx) — Persistent labeled desktop navigation sidebar.
+- [src/components/erp/ErpTopBar.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/erp/ErpTopBar.tsx) — Sticky topbar with persistent demo banner and bullion ticker.
+- [src/components/erp/ErpMobileNav.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/erp/ErpMobileNav.tsx) — Touch-friendly mobile navigation slide-over drawer.
+- [src/components/erp/ErpShell.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/erp/ErpShell.tsx) — Main ERP shell wrapper.
+- [src/app/(erp)/layout.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/layout.tsx) — Dedicated ERP route group layout.
+- [src/app/(erp)/dashboard/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/dashboard/page.tsx) — Showroom ERP overview dashboard.
+- [src/app/(erp)/parties/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/parties/page.tsx) — Reconciled Party directory page.
+- [src/app/(erp)/parties/[id]/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/parties/[id]/page.tsx) — Party detail and running balance ledger view.
+- [src/app/(erp)/inventory/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/inventory/page.tsx) — Inventory stock catalog with tag search.
+- [src/app/(erp)/inventory/item/[tag]/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/inventory/item/[tag]/page.tsx) — Safe tag item detail and controlled recovery state.
+- [src/app/(erp)/sales/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/sales/page.tsx) — Scheduled module placeholder.
+- [src/app/(erp)/sales/new/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/sales/new/page.tsx) — Scheduled terminal placeholder.
+- [src/app/(erp)/customers/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/customers/page.tsx) — Scheduled module placeholder.
+- [src/app/(erp)/customers/[id]/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/customers/[id]/page.tsx) — Scheduled customer placeholder.
+- [src/app/(erp)/bi/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/(erp)/bi/page.tsx) — Scheduled analytics placeholder.
+- [test/erp-foundation.test.ts](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/test/erp-foundation.test.ts) — 8 automated tests for formatting, reconciliation, and tag lookup.
+- [package.json](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/package.json) — Added `test` script.
+- [tsconfig.json](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/tsconfig.json) — Added `allowImportingTsExtensions: true`.
+- [docs/implementation-log.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/implementation-log.md) — Appended Phase 6A records.
+
+---
+
+### 3. Screenshot Inventory
+
+| Screenshot Filename | Dimensions / Viewport | Description |
+|:---|:---|:---|
+| `item_tag_gld_101_1792700182719.png` | 1440 × 900 Viewport | Valid tag inspection for `TAG-GLD-101` with HUID and weight specs |
+| `item_tag_gld_101_bottom_1792700189549.png` | 1440 × 900 Viewport | Commercial valuation and retail price breakdown for `TAG-GLD-101` |
+| `inventory_item_404_recovery_1792700198098.png` | 1440 × 900 Viewport | Controlled error recovery card for unknown tag `TAG-INVALID-404` (`INV-01`) |
+| `inventory_item_404_recovery_bottom_1792700206888.png` | 1440 × 900 Viewport | Clickable suggested valid tags and search-again input in recovery state |
+| `parties_mobile_390x844_1792700218502.png` | 390 × 844 Mobile | Parties directory mobile layout with responsive summary cards |
+| `parties_mobile_cards_1792700224792.png` | 390 × 844 Mobile | Responsive party card items with explicit balance badges and zero overflow |
+| `inventory_mobile_390x844_top_1792700235073.png` | 390 × 844 Mobile | Inventory catalog mobile layout with barcode search spotlight |
+| `inventory_mobile_cards_1792700242230.png` | 390 × 844 Mobile | Responsive stock item cards with purity and price details |
+
+---
+
+### 4. Technical Distinctions & Honest Limitations
+
+1. **Client-Side Mock vs Production SQL Queries**:
+   - The canonical `partyStore.ts` demonstrates perfect mathematical reconciliation and consistency between summary cards, party profile headers, and mini-ledgers on the frontend.
+   - This fixes the UI representation and proves the intended UX contract, but does not alter or repair live production database views or stored procedures on the Octis backend.
+2. **Client-Side Safe Tag Lookup vs Backend UUID Translation**:
+   - `resolveInventoryTag` safely resolves tags, normalizes strings, and provides a controlled recovery UI without unhandled exceptions.
+   - However, in production, the server-side tag-to-UUID resolution defect remains a backend API requirement that must be patched in the cloud service.
+
+---
+
+### 5. Acceptance Criteria Verification
+
+- [x] Shared ERP shell and persistent labeled navigation work across desktop and mobile.
+- [x] `/dashboard`, `/parties`, `/parties/[id]`, `/inventory`, and `/inventory/item/[tag]` are fully implemented.
+- [x] Party views derive their relevant numbers from one canonical local source (`partyStore.ts`).
+- [x] Financial and metal balances use explicit semantics (`SemanticBalanceBadge`, `MetalBalanceBadge`) without relying on color alone.
+- [x] Invalid inventory tags produce a recoverable UI state with suggestions and no raw technical errors.
+- [x] Responsive and accessibility checks performed (zero mobile horizontal overflow).
+- [x] TypeScript (`npx tsc --noEmit`), automated tests (`npm test`), and production build (`npm run build`) pass cleanly.
+- [x] `/` and `/login` remain completely intact.
+- [x] Backend-dependent limitations are documented honestly.
+- [x] Changes committed to Git with clean working tree.
+
+**Phase 6A Status**: PASSED.
+
+
 
 
 
