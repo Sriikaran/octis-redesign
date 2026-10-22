@@ -387,6 +387,167 @@ This log provides a chronological record of all phases, actions, command executi
 
 **Phase 4A Status**: PASSED.
 
+---
+
+## Phase 4B: Reconstruct the Remaining Octis Homepage
+
+- **Date**: 2026-10-23
+- **Lead / Operator**: Senior Frontend Engineer & Reverse-Engineering Specialist
+- **Phase Objective**: Implement the remaining sections of the existing public Octis homepage (`https://octis.in/`) in their original order using verified live-site content, downloaded official assets, extracted styles, and screenshots. Complete the Milestone A homepage baseline without applying developer blueprint redesigns.
+
+---
+
+### 1. Step-by-Step Activities
+
+1. **Step 1 — Audited Current Implementation & Codebase**:
+   - Inspected `src/app/page.tsx`, `src/app/globals.css`, `src/components/Navbar.tsx`, `src/components/Hero.tsx`, and reference manifests.
+   - Verified Git status before code changes. Confirmed pinned Next.js 15.1.7, React 19.0.0, Tailwind CSS 3.4.17 dependencies.
+
+2. **Step 2 — Implemented Core Features Section (`src/components/Features.tsx`)**:
+   - Section ID: `#features` (`scroll-mt-20`).
+   - Header: Label *"Core Features"*, Heading *"Everything you need to run a modern jewellery retail business"*, Subtitle *"We've replaced clunky legacy software with a beautiful, intuitive system that your staff will learn in minutes, not months."*
+   - Six feature cards with verbatim live copy and Lucide icons:
+     1. Lightning Fast POS (`Zap`)
+     2. Intelligent Inventory (`Boxes`)
+     3. Live Metal Rate Sync (`TrendingUp`)
+     4. Customer Loyalty CRM (`HeartHandshake`)
+     5. Karigar Management (`Users`)
+     6. Deep Analytics (`BarChart3`)
+   - Recreated card spacing, subtle gold borders, surface background, and hover lift effects.
+
+3. **Step 3 — Implemented POS & Inventory Spotlights (`src/components/SpotlightPos.tsx`, `src/components/SpotlightInventory.tsx`, `src/components/SpotlightSection.tsx`)**:
+   - Container ID: `#inventory` (`scroll-mt-20`) with dark surface background (`#1A0C06` to `#241108` gradient) and subtle gold border.
+   - **POS Spotlight**:
+     - Heading: *"A Point of Sale that keeps the line moving"*
+     - Description: *"Long queues during Dhanteras? No problem. Our POS is optimized for speed. Add items via barcode scanner, calculate wastage and making charges instantly, and accept any payment method."*
+     - Benefits: One-click old gold exchange calculation, Split payments (Cash + Card + UPI), Instant WhatsApp invoice sharing.
+     - Mockup: Verified official asset `/pos-mockup.png`.
+   - **Inventory Spotlight**:
+     - Heading: *"Total visibility over your most valuable assets"*
+     - Description: *"Every gram counts. Track your entire stock from procurement to sale with granular details. Know exactly what you have, where it is, and what you need to reorder."*
+     - Benefits: Seamless HUID barcode generation, Filter by Purity (22K/24K/18K), Track stone weight vs net gold weight.
+     - Mockup: Verified official asset `/inventory-mockup.png`.
+   - Alternating two-column desktop grid with responsive mobile stacking.
+
+4. **Step 4 — Implemented Regulatory Compliance (`src/components/Compliance.tsx`)**:
+   - Section ID: `#compliance` (`scroll-mt-20`).
+   - Label: *"Strictly Compliant"*
+   - Heading: *"Built for Indian Jewellery Regulations"*
+   - Description: *"Government regulations change fast. Octis stays ahead, ensuring your business operates legally and without fear of penalties."*
+   - Three dark compliance panels:
+     1. BIS Hallmarking & HUID (`ShieldCheck`)
+     2. IT Act & KYC Rules (`FileCheck`) — PAN/Aadhaar for > ₹2 lakh
+     3. PMLA / FIU Reporting (`Scale`) — Flag and log cash transactions > ₹10 lakh
+   - Preserved verbatim live thresholds and copy without speculation.
+
+5. **Step 5 — Implemented Pricing Matrix (`src/components/Pricing.tsx`)**:
+   - Section ID: `#pricing` (`scroll-mt-20`).
+   - Label: *"Pricing"*
+   - Heading: *"Plans that scale with your showroom"*
+   - Description: *"Flexible pricing for Indian jewellery retailers. Contact us for a quote tailored to your branch count and team size."*
+   - Three tiered cards (all displaying *"Custom"* with *"/ month"* and *"Contact for pricing"* CTA linking to `#cta`):
+     - **Starter**: For single-branch showrooms getting started with digital billing (POS & billing, Inventory tagging, GST invoices, Basic reports, Email support).
+     - **Professional** (Featured/Elevated with gold border and *"Most Popular"* badge): For growing jewellers who need compliance, schemes, and multi-user access (Everything in Starter, HUID & BIS compliance, Gold schemes & CRM, Karigar management, Priority support).
+     - **Enterprise**: For multi-branch chains with advanced controls and custom workflows (Everything in Professional, Multi-branch sync, Custom roles & permissions, Dedicated onboarding, SLA-backed support).
+
+6. **Step 6 — Implemented FAQ Accordion (`src/components/Faq.tsx`)**:
+   - Section ID: `#faq` (`scroll-mt-20`).
+   - Label: *"FAQ"*
+   - Heading: *"Questions from Indian jewellers"*
+   - Description: *"Everything you need to know about switching to Octis."*
+   - All 8 verbatim questions and answers implemented.
+   - Accessible accordion component with `aria-expanded`, `aria-controls`, and keyboard navigation support.
+   - Question 1 expanded by default (matching live server-rendered baseline state).
+   - Rotating chevron indicators and smooth CSS height transition.
+
+7. **Step 7 — Implemented Final CTA Banner & Footer (`src/components/CtaBanner.tsx`, `src/components/Footer.tsx`)**:
+   - **CTA Banner** (`#cta`):
+     - Heading: *"Ready to transform your showroom?"*
+     - Description: *"Join the fastest-growing network of modern jewelers. Get a personalized demo and a 30-day free trial to see the difference with Octis."*
+     - Primary CTA: *"Request a Demo"* (`mailto:demo@octis.in`).
+     - Secondary CTA: *"Call Sales"* (`tel:+917396029339`).
+     - Footnote: *"No credit card required. Free data migration included."*
+   - **Footer**:
+     - Official logo (`/logo.png`), tagline, and description.
+     - Product links: Point of Sale, Inventory, CRM & Schemes, Reporting (all to `#features`).
+     - Resources: FAQ (`#faq`).
+     - Contact: `+91 7396 029 339` (`tel:+917396029339`), `hello@octis.in` (`mailto:hello@octis.in`).
+     - Copyright: *"© 2026 Octis Technologies. All rights reserved."*
+
+8. **Step 8 — Complete Page Assembly (`src/app/page.tsx`)**:
+   - Assembled all 10 homepage sections in exact live sequence:
+     1. Sticky Navbar
+     2. Hero
+     3. Core Features (`#features`)
+     4. POS Spotlight (inside `#inventory`)
+     5. Inventory Spotlight (inside `#inventory`)
+     6. Regulatory Compliance (`#compliance`)
+     7. Pricing (`#pricing`)
+     8. FAQ (`#faq`)
+     9. Final CTA (`#cta`)
+     10. Footer
+
+9. **Step 9 — Quality Assurance, Production Build & Visual Testing**:
+   - `npx tsc --noEmit`: 0 errors.
+   - `npm run build`: Production static build compiled cleanly; all 4 routes generated.
+   - Tested on local production server (`http://localhost:3000`).
+   - Browser Subagent ran interactive QA across three viewports:
+     - Desktop (1440 × 900)
+     - Tablet (768 × 1024)
+     - Mobile (390 × 844)
+   - Evaluated horizontal overflow (`document.documentElement.scrollWidth > window.innerWidth` returned `false`).
+   - Verified interactive drawer toggle, FAQ item 2 accordion expansion, and `#pricing` smooth scroll.
+   - Saved 6 reference screenshots into `reference/screenshots/`.
+
+---
+
+### 2. Files Created and Updated
+
+- [src/components/Features.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/Features.tsx) — Core features grid with 6 cards.
+- [src/components/SpotlightPos.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/SpotlightPos.tsx) — POS spotlight with checkmarks and `/pos-mockup.png`.
+- [src/components/SpotlightInventory.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/SpotlightInventory.tsx) — Inventory spotlight with checkmarks and `/inventory-mockup.png`.
+- [src/components/SpotlightSection.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/SpotlightSection.tsx) — Unified dark spotlight container (`#inventory`).
+- [src/components/Compliance.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/Compliance.tsx) — Regulatory compliance section with 3 regulatory panels.
+- [src/components/Pricing.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/Pricing.tsx) — 3-tier pricing matrix with highlighted Professional tier.
+- [src/components/Faq.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/Faq.tsx) — Accessible 8-item FAQ accordion.
+- [src/components/CtaBanner.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/CtaBanner.tsx) — Final conversion banner with verified mailto/tel links.
+- [src/components/Footer.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/Footer.tsx) — Brand footer with navigation and verified contact information.
+- [src/app/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/page.tsx) — Homepage assembling all 10 sections in live sequence.
+- [src/app/globals.css](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/globals.css) — Refined design tokens, surface gradients, and utility classes.
+- [tailwind.config.ts](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/tailwind.config.ts) — Extended color palette tokens.
+- `reference/screenshots/local_phase4b_*` — 6 local rendered verification screenshots.
+- [docs/implementation-log.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/implementation-log.md) — Appended Phase 4B records.
+
+---
+
+### 3. Screenshot Inventory
+
+| Screenshot Filename | Dimensions / Viewport | Description |
+|:---|:---|:---|
+| `reference/screenshots/local_phase4b_desktop_1440_fullpage.png` | 1440 × 900 (Full-page) | Complete desktop homepage replica from hero to footer |
+| `reference/screenshots/local_phase4b_pricing_desktop.png` | 1440 × 900 | Desktop view of the 3-tier pricing matrix |
+| `reference/screenshots/local_phase4b_faq_expanded.png` | 1440 × 900 | Desktop view of FAQ with Item 2 expanded |
+| `reference/screenshots/local_phase4b_tablet_768_fullpage.png` | 768 × 1024 (Full-page) | Complete tablet homepage replica with responsive grids |
+| `reference/screenshots/local_phase4b_mobile_390_fullpage.png` | 390 × 844 (Full-page) | Complete mobile homepage replica with stacked cards |
+| `reference/screenshots/local_phase4b_mobile_menu_open.png` | 390 × 844 | Mobile navigation drawer open showing menu links |
+
+---
+
+### 4. Acceptance Criteria Verification
+
+- [x] All remaining homepage sections are implemented in live order.
+- [x] All verified text, copy, and destinations are preserved verbatim.
+- [x] Official assets (`/pos-mockup.png`, `/inventory-mockup.png`, `/logo.png`) are reused.
+- [x] All navigation anchor targets exist (`#features`, `#inventory`, `#compliance`, `#pricing`, `#faq`, `#cta`) with `scroll-mt-20`.
+- [x] FAQ interactions are accessible with keyboard activation and `aria-expanded` attributes.
+- [x] CTA links work with verified destinations (`demo@octis.in`, `tel:+917396029339`, `hello@octis.in`).
+- [x] Desktop, tablet, and mobile layouts are verified with zero horizontal overflow.
+- [x] TypeScript check (`npx tsc --noEmit`) and production build (`npm run build`) pass cleanly.
+- [x] Local verification screenshots and diff records are documented.
+
+**Phase 4B Status**: PASSED.
+
+
 
 
 

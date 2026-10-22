@@ -1,5 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Features from "@/components/Features";
+import SpotlightSection from "@/components/SpotlightSection";
+import Compliance from "@/components/Compliance";
+import Pricing from "@/components/Pricing";
+import Faq from "@/components/Faq";
+import CtaBanner from "@/components/CtaBanner";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -7,7 +14,14 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <Features />
+        <SpotlightSection />
+        <Compliance />
+        <Pricing />
+        <Faq />
+        <CtaBanner />
       </main>
+      <Footer />
     </div>
   );
 }
