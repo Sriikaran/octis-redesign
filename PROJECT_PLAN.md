@@ -76,43 +76,39 @@ flowchart TD
   - Exact copy and branding match the live site.
   - Responsive behavior matches desktop and mobile viewports.
 
-### Phase 4: Milestone A Verification & Baseline Gate
-- **Objective**: Conduct rigorous visual and functional QA against the live website before any modifications begin.
-- **Scope**:
-  - Side-by-side visual comparison at 1440px desktop and 375px mobile viewports.
-  - Verify asset fidelity, layout alignment, typography, and contrast.
-  - Test responsive breakpoints (desktop, tablet, mobile).
-  - Validate interactive states: menu open/close, FAQ accordions, anchor jumps.
-  - Production build and lint validation.
-- **Dependencies**: Phase 3 implementation.
-- **Acceptance Criteria (BASELINE GATE)**:
-  - Strict sign-off checklist verified and recorded in `docs/implementation-log.md`.
-  - Zero missing sections or unstyled elements.
-  - Successful production build.
-  - **MANDATORY**: Only upon passing this gate may Phase 5 be authorized.
+### Phase 4: Milestone A Verification & Baseline Gate (COMPLETED & PASSED)
+- **Status**: PASSED (Phases 4A, 4B, 4C fully executed and verified; Git commit `dc848fc`).
+- **Accomplishments**:
+  - Full Next.js 15 App Router application foundation with pinned dependencies.
+  - Complete faithful marketing homepage (`/`) covering all 10 sections in exact live sequence.
+  - Reconstructed public authentication route (`/login`) with official branding and transparent external service notices.
+  - Corrected `#inventory` anchor navigation and validated full-page responsive screenshots (Desktop 1440, Tablet 768, Mobile 390).
+  - Clean production build and zero horizontal overflow across all viewports.
+- **Milestone A Sign-off**: Gate authorized to commence Milestone B planning and mapping.
 
-### Phase 5: Milestone B Implementation (Requested Enhancements)
-- **Objective**: Apply the UI/UX and content updates specified in `OCTIS_UIUX_Complete_Audit_and_Fix_Blueprint.docx`.
-- **Scope**:
-  - Ingest audit recommendations, architectural changes, typography/hierarchy updates, and UI polish.
-  - Update sections as instructed by the developer document while preserving untouched copy and SEO tags.
-  - Maintain clean, modular component boundaries for modified components.
-- **Dependencies**: Phase 4 Baseline Gate sign-off.
-- **Acceptance Criteria**:
-  - Every explicit enhancement requirement from the developer document implemented.
-  - Non-modified areas remain intact and functional.
+### Phase 5: Blueprint Requirements Mapping and ERP Scope Preparation (Current)
+- **Objective**: Convert `OCTIS_UIUX_Complete_Audit_and_Fix_Blueprint.docx` and the 24 audit screenshots in `OCTIS_UIUX_Audit_Evidence` into a traceable implementation map and ERP architecture plan.
+- **Deliverables**:
+  - `docs/blueprint-implementation-map.md`: Traceable matrix covering all 38 core and supplementary requirements.
+  - `docs/erp-implementation-plan.md`: Evidence-based route and component architecture preserving `/` and `/login`.
+  - Updated `PROJECT_PLAN.md` and `docs/implementation-log.md`.
+- **Constraint**: Zero application source code modifications; no packages installed.
 
-### Phase 6: Milestone B Verification & Final QA
-- **Objective**: Complete end-to-end audit, cross-browser validation, performance, and accessibility testing.
+### Phase 6: Milestone B ERP Module Implementation
+- **Phase 6A — ERP Foundation & Shared Architecture**: App Router `(erp)` route group, `ErpShell`, persistent sidebar, `DateRangeFilter`, and canonical mock stores.
+- **Phase 6B — Financial Trust & Safety (P0 Issues)**: Reconciled `/parties` directory & ledger (`PART-01` to `PART-07`), semantic balance badges (`CUST-03`), and safe inventory tag error boundary (`INV-01`).
+- **Phase 6C — Core POS & Sales Terminal (P1 Issues)**: Progressive loading shell (`POS-01`), integrated Metal Exchange deduction (`POS-02`), required notes validation (`POS-03`), and return bill selection (`POS-04`, `POS-05`).
+- **Phase 6D — Safe Inventory & Staged Bulk Inward**: Bulk entry wizard (`INV-02`), normalized casing (`INV-04`), clean card hierarchy (`INV-05`), and mobile table prevention (`INV-04`).
+- **Phase 6E — Customer Management & KYC Privacy**: Persistent text navigation (`CUST-01`), masked Aadhaar/PAN fields (`CUST-02`), 360 profile dossier (`CUST-04`, `CUST-05`).
+- **Phase 6F — Business Intelligence & Graph Drill-Through**: Labeled BI tabs (`BI-01`), Indian rupee 2-decimal formatting (`BI-02`), auto-fit React Flow graph canvas (`BI-03`), operational deep links (`BI-04`), period filters (`BI-05`), and exposure risk hierarchy (`BI-06`).
+
+### Phase 7: Milestone B Final Verification, Responsive & Accessibility QA
+- **Objective**: Multi-viewport testing (1440px desktop, 768px tablet, 390px mobile) across all ERP routes.
 - **Scope**:
-  - Regression testing against core baseline functionality.
-  - Lighthouse audit (Performance, Accessibility, Best Practices, SEO).
-  - Cross-device responsive validation.
-  - Final production build check and artifact preparation.
-- **Dependencies**: Phase 5 implementation.
-- **Acceptance Criteria**:
-  - Error-free production build.
-  - Fully documented changelog and comparison report in `docs/`.
+  - End-to-end regression testing ensuring `/` and `/login` remain completely unaffected.
+  - Full keyboard accessibility and focus ring checks.
+  - Production build and TypeScript validation.
+  - Final comparison reporting and evidence capture.
 
 ---
 
