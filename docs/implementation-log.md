@@ -547,6 +547,116 @@ This log provides a chronological record of all phases, actions, command executi
 
 **Phase 4B Status**: PASSED.
 
+---
+
+## Phase 4C: Reconstruct the Public Login Route and Fix Baseline Gaps
+
+- **Date**: 2026-10-23
+- **Lead / Operator**: Senior Frontend Engineer & Reverse-Engineering Specialist
+- **Phase Objective**: Reconstruct the public `/login` interface based on live forensic analysis of `https://octis.in/login`, resolve the `#inventory` homepage anchor to target the Inventory spotlight directly, and verify/recapture the invalid tablet full-page screenshot.
+
+---
+
+### 1. Step-by-Step Activities
+
+1. **Step 1 — Audited Current Codebase & Working Tree**:
+   - Inspected working tree: clean at commit `f137b04`.
+   - Verified Next.js App Router setup and existing homepage components.
+
+2. **Step 2 — Inspected Live `/login` Interface & Forensic Logic**:
+   - Fetched raw HTML from `https://octis.in/login` (`scratch/octis_login_raw.html`, 6,969 bytes).
+   - Downloaded and analyzed client-side script chunk `scratch/octis_login_chunk.js` (14,249 bytes).
+   - Discovered that the live site authentication connects to an external multi-tenant challenge workflow (`iJ.getLoginChallenge`, `iJ.completeLoginChallenge`) with owner approval.
+   - Identified exact DOM elements:
+     - Page Title: `Login | Octis`
+     - Brand logo with hover scale transition.
+     - Heading: *"Welcome Back"* (font-display), Subtitle: *"Sign in to your jewellery management system"*.
+     - Card: rounded-xl, backdrop-blur-sm, border-primary/20, shadow-2xl.
+     - Form: Username input (`placeholder="Enter Username"`), Password input (`placeholder="Enter Password"`), submit button with `LogIn` icon.
+     - Footer: *"Need help? Contact your administrator"*.
+     - Return link: *"← Back to home"*.
+   - Captured rendered reference screenshots of `https://octis.in/login`:
+     - `reference/screenshots/live_login_desktop_1440.png` (194,486 bytes)
+     - `reference/screenshots/live_login_mobile_390.png` (102,119 bytes)
+
+3. **Step 3 — Implemented `/login` Route**:
+   - Created `src/app/login/page.tsx` with official page metadata (`title: "Login | Octis"`).
+   - Created `src/components/LoginForm.tsx`:
+     - Matched exact live classes, radial background glow blurs, input borders, and focus rings.
+     - Implemented accessible `<label>` and `<input>` pairings with unique IDs and autofocus.
+     - Added form submission handling that avoids fake authentication while providing transparent feedback: *"Authentication service is external. Active cloud showroom credentials and owner approval are required to access the production Octis ERP system."*
+     - Included working *"← Back to home"* navigation to `/`.
+     - Zero horizontal overflow on mobile viewports.
+
+4. **Step 4 — Corrected Homepage `#inventory` Anchor**:
+   - Inspected `SpotlightSection.tsx` and `SpotlightInventory.tsx`.
+   - Identified that `id="inventory"` was previously attached to the outer dark section wrapper containing both POS and Inventory spotlights, causing navigation to land on the POS spotlight.
+   - Removed `id="inventory"` and `scroll-mt-20` from the outer wrapper in `src/components/SpotlightSection.tsx`.
+   - Attached `id="inventory"` and `scroll-mt-24` directly to the `SpotlightInventory` component container (`src/components/SpotlightInventory.tsx`).
+   - Verified via browser subagent navigation that clicking the top navbar "Inventory" link scrolls smoothly and accurately to *"Total visibility over your most valuable assets"* with correct clearance below the fixed navbar.
+
+5. **Step 5 — Verified & Recaptured Tablet Screenshot**:
+   - Inspected previous `reference/screenshots/local_phase4b_tablet_768_fullpage.png` (17,430 bytes).
+   - Forensic analysis revealed pixel statistics `StdDev: [0.0, 0.0, 0.0]`, indicating an empty, solid ivory capture failure.
+   - Recaptured full-page screenshot using the browser subagent at CSS viewport 768 × 1024.
+   - Validated new image: dimensions 1158 × 4096 px, standard deviation ~61–68, full RGB dynamic range, file size 1,717,022 bytes (1.72 MB).
+   - Replaced invalid file in `reference/screenshots/local_phase4b_tablet_768_fullpage.png`.
+
+6. **Step 6 — Regression Testing & Local QA**:
+   - `npx tsc --noEmit`: 0 TypeScript errors.
+   - `npm run build`: Compiled successfully; 5 static pages generated (`/`, `/_not-found`, `/login`).
+   - Browser Subagent verified:
+     - Desktop `/login` (1440 × 900) layout and styling.
+     - Form input typing (`admin` / `secret123`), loading state, and service notice banner.
+     - Return link navigation back to `/`.
+     - Mobile `/login` (390 × 844) layout and zero horizontal overflow (`scrollWidth <= innerWidth`).
+   - Saved local verification screenshots into `reference/screenshots/`:
+     - `reference/screenshots/local_login_desktop_1440.png` (154,989 bytes)
+     - `reference/screenshots/local_login_mobile_390.png` (99,986 bytes)
+
+---
+
+### 2. Files Created and Updated
+
+- [src/app/login/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/login/page.tsx) — Public `/login` route with metadata.
+- [src/components/LoginForm.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/LoginForm.tsx) — High-fidelity client login interface component.
+- [src/components/SpotlightSection.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/SpotlightSection.tsx) — Removed wrapper `id="inventory"` anchor.
+- [src/components/SpotlightInventory.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/SpotlightInventory.tsx) — Attached `id="inventory"` and `scroll-mt-24` directly to inventory spotlight.
+- `reference/screenshots/local_phase4b_tablet_768_fullpage.png` — Recaptured and verified tablet full-page screenshot (1.72 MB).
+- `reference/screenshots/live_login_desktop_1440.png` — Rendered live site login capture (desktop).
+- `reference/screenshots/live_login_mobile_390.png` — Rendered live site login capture (mobile).
+- `reference/screenshots/local_login_desktop_1440.png` — Local replica login capture (desktop).
+- `reference/screenshots/local_login_mobile_390.png` — Local replica login capture (mobile).
+- [docs/implementation-log.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/implementation-log.md) — Appended Phase 4C records.
+
+---
+
+### 3. Screenshot Inventory
+
+| Screenshot Filename | Dimensions / Viewport | Description |
+|:---|:---|:---|
+| `reference/screenshots/local_phase4b_tablet_768_fullpage.png` | 768 × 1024 Viewport (1158 × 4096 px) | Recaptured valid tablet homepage with full color dynamic range |
+| `reference/screenshots/live_login_desktop_1440.png` | 1440 × 900 | Live reference capture of `https://octis.in/login` (desktop) |
+| `reference/screenshots/live_login_mobile_390.png` | 390 × 844 | Live reference capture of `https://octis.in/login` (mobile) |
+| `reference/screenshots/local_login_desktop_1440.png` | 1440 × 900 | Local reconstructed `/login` interface (desktop) |
+| `reference/screenshots/local_login_mobile_390.png` | 390 × 844 | Local reconstructed `/login` interface (mobile) |
+
+---
+
+### 4. Acceptance Criteria Verification
+
+- [x] `/login` is reconstructed from actual public-site evidence.
+- [x] The login page is responsive and accessible with visible focus rings and proper labeling.
+- [x] No fake successful authentication is presented; external cloud ERP dependency is clearly articulated.
+- [x] `#inventory` points directly to the intended inventory spotlight.
+- [x] The tablet screenshot was investigated, found invalid (blank 17KB image), and replaced with a verified 1.72 MB capture.
+- [x] TypeScript (`npx tsc --noEmit`) and production build (`npm run build`) pass cleanly.
+- [x] `/` and `/login` respond as expected.
+- [x] The implementation log and Git history are updated.
+
+**Phase 4C Status**: PASSED.
+
+
 
 
 

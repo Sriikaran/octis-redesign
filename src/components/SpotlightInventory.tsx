@@ -8,7 +8,10 @@ export default function SpotlightInventory() {
   ];
 
   return (
-    <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <div
+      id="inventory"
+      className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center scroll-mt-24"
+    >
       <div className="order-2 lg:order-1">
         <div className="relative">
           <div className="landing-mockup-glow" />
