@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import AIIntelligence from "@/components/AIIntelligence";
 import SpotlightSection from "@/components/SpotlightSection";
 import Compliance from "@/components/Compliance";
 import Pricing from "@/components/Pricing";
@@ -15,6 +16,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Features />
+        <AIIntelligence />
         <SpotlightSection />
         <Compliance />
         <Pricing />

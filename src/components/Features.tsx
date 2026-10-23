@@ -120,7 +120,7 @@ export default function Features() {
               <span className="flex items-center gap-1.5 text-primary font-semibold">
                 <span>13 Connected Modules</span>
                 <span className="text-muted-foreground font-normal">
-                  • Unified Data Model • Zero Disconnected Silos
+                  • Connected Jewellery Operations
                 </span>
               </span>
             </div>
@@ -295,7 +295,7 @@ export default function Features() {
                     <Layers className="w-6 h-6" strokeWidth={2} />
                   </div>
                   <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-gold-100 text-[#9a7209] border border-gold-300/40">
-                    Unified Platform
+                    One System
                   </span>
                 </div>
                 <h4 className="font-display text-xl sm:text-2xl font-bold text-[#1a2f4a] mb-1">
@@ -308,13 +308,13 @@ export default function Features() {
                   Bring accounts, ledgers and complete jewellery operations together in one system instead of managing separate software for accounting and jewellery operations.
                 </p>
 
-                {/* Highlight box */}
+                {/* Approved core highlight */}
                 <div className="p-3.5 rounded-xl bg-gradient-to-r from-gold-50/60 to-white border border-gold-200/80">
                   <p className="text-xs font-semibold text-[#1a2f4a] mb-1">
-                    Zero Duplicate Work • Connected Financial Truth
+                    Integrated Business Management
                   </p>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    Customer balances, supplier metal liabilities, vouchers, and GST tax filings remain perfectly synchronized with your live inventory floor.
+                    Manage accounts, ledgers, and day-to-day jewellery showroom workflows together in a single system.
                   </p>
                 </div>
               </div>
