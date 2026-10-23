@@ -952,6 +952,178 @@ This log provides a chronological record of all phases, actions, command executi
 
 **Phase 6A Status**: PASSED.
 
+---
+
+## Track Correction: Return to Public Homepage & Homepage Redesign Scope (website.docx)
+
+- **Date**: 2026-10-23
+- **Lead / Operator**: Senior Frontend Engineer & Project Lead
+- **Phase Objective**: Formally realign the project scope away from internal ERP modules back to the primary objective: completing, enhancing, and polishing the public marketing website at `https://octis.in/` using the authoritative requirements in `website.docx`.
+
+---
+
+### 1. Step-by-Step Activities
+
+1. **Step 1 — Inspected Interrupted Phase 6B State & Working Tree**:
+   - Checked Git status and commit history: HEAD at `257cc0a` (`feat: complete Phase 6A ERP shell, financial trust, party reconciliation, and safe inventory lookup`).
+   - Inspected working tree modifications:
+     - Modified: `package.json`, `src/app/(erp)/dashboard/page.tsx`, `src/components/erp/ErpTopBar.tsx`, `src/lib/erp/partyStore.ts`.
+     - Untracked: `src/components/erp/DateRangeFilter.tsx`, `src/components/erp/ErpEmptyState.tsx`, `src/components/erp/ErpErrorState.tsx`, `src/components/erp/ResponsiveDataTable.tsx`, `src/lib/erp/dateRangeUtils.ts`, `test/erp-dashboard-ux.test.ts`, and screenshot evidence in `reference/screenshots/`.
+   - **Critical Verification**: Confirmed that **zero** public marketing homepage files (`src/app/page.tsx`, `src/components/Hero.tsx`, `src/components/Navbar.tsx`, `src/components/Features.tsx`, `src/components/SpotlightSection.tsx`, `src/components/Compliance.tsx`, `src/components/Pricing.tsx`, `src/components/Faq.tsx`, `src/components/CtaBanner.tsx`, `src/components/Footer.tsx`) or public authentication files (`src/app/login/page.tsx`, `src/components/LoginForm.tsx`) were modified by Phase 6B.
+   - Identified background process on debugging port 9222 (PID 23664) and terminated it cleanly per user confirmation.
+   - Next.js development server remains active and healthy on `http://localhost:3000`.
+
+2. **Step 2 — Established Correct Scope & Classified Out-of-Scope Tracks**:
+   - **IN SCOPE (Active Track)**:
+     - Public marketing website at `/`.
+     - Header, navigation, and mobile hamburger drawer.
+     - Hero positioning and AI-Powered Jewellery ERP branding.
+     - Connected business flow (`Metal → ... → AI → Digital Commerce`).
+     - Core feature differentiators (Traceability, Vendor Intelligence, Article Profitability, Tally + Jewellery).
+     - Standalone AI Intelligence section (From Jewellery Software to Jewellery Intelligence, 5 pillars, concrete examples).
+     - Digital Commerce and AI Catalogue creation.
+     - Why Octis 8-pillar showcase.
+     - Pricing tiers and positioning progression (Run → Understand → Predict • Optimise • Scale).
+     - Enterprise customisation callout.
+     - Final CTA tiered value messaging.
+     - FAQ expansion with 5 specific AI questions.
+     - SEO metadata integrity and natural AI keyword inclusion.
+     - Credibility figures verification gate.
+   - **EXPLICITLY OUT OF SCOPE (Paused)**:
+     - Internal ERP modules (`OCTIS_UIUX_Complete_Audit_and_Fix_Blueprint.docx`).
+     - Dashboard (`/dashboard`), POS Billing (`/sales`), Inventory (`/inventory`), Parties (`/parties`), Business Intelligence (`/bi`), Approvals, Schemes, Procurement, Settings.
+     - Internal financial ledgers and backend/database queries.
+     - These modules are preserved in the repository but will not receive further implementation during the homepage task.
+
+3. **Step 3 — Located and Verified Authoritative "website.docx"**:
+   - Located the complete authoritative document at:
+     `C:\Users\srika\Downloads\website.docx` (File size: 41,137 bytes).
+   - Extracted and read all 171 paragraphs across all 16 numbered sections using Python XML parsing.
+   - Confirmed document directive: *"Keep the agency's existing website structure, sections, SEO structure, feature descriptions, FAQs, CTAs and overall copy. Apply only the changes listed in this document."*
+
+4. **Step 4 — Preserved Original Homepage Clone**:
+   - Verified that the completed Milestone A homepage baseline (Phases 4A, 4B, 4C; commit `dc848fc`) remains 100% intact, functional, and recoverable.
+   - No destructive git resets or indiscriminate deletions were performed.
+   - Preserved all existing components and assets.
+
+5. **Step 5 — Authored Homepage Requirements Map (`docs/homepage-redesign-plan.md`)**:
+   - Created [docs/homepage-redesign-plan.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/homepage-redesign-plan.md).
+   - Fully mapped all 16 sections of `website.docx` to specific components, requested copy, implementation status, acceptance criteria, and verification methods.
+   - Planned the 11-section homepage visual narrative structure without disturbing existing agency sections.
+
+6. **Step 6 — Updated Governance & Project Planning**:
+   - Updated [PROJECT_PLAN.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/PROJECT_PLAN.md) to formally prioritize the public website redesign track and classify ERP as out of scope.
+   - Strictly avoided beginning any redesign code implementation in this corrective pass.
+
+---
+
+### 2. Files Created and Updated
+
+- [docs/homepage-redesign-plan.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/homepage-redesign-plan.md) — Comprehensive requirements traceability map for all 16 sections of `website.docx`.
+- [PROJECT_PLAN.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/PROJECT_PLAN.md) — Realignment of active workstream to public homepage clone & redesign.
+- [scratch/extract_website_docx.py](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/scratch/extract_website_docx.py) — Python script to parse and extract `website.docx` XML without external dependencies.
+- [scratch/extracted_website_docx.txt](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/scratch/extracted_website_docx.txt) — Full text extraction of `website.docx` (171 paragraphs).
+- [docs/implementation-log.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/implementation-log.md) — Appended Track Correction entry.
+
+---
+
+### 3. Acceptance Criteria Verification
+
+- [x] Interrupted Phase 6B state inspected and documented.
+- [x] Git status and existing work preserved; no destructive resets.
+- [x] `website.docx` located (`C:\Users\srika\Downloads\website.docx`) and read in full.
+- [x] Homepage-only scope clearly established.
+- [x] All 16 requirements from `website.docx` mapped in `docs/homepage-redesign-plan.md`.
+- [x] Public homepage baseline remains 100% intact and recoverable.
+- [x] Internal ERP blueprint explicitly excluded from the current track.
+- [x] `PROJECT_PLAN.md` and `docs/implementation-log.md` reflect the corrected scope.
+- [x] Zero destructive rollbacks or unnecessary code churn occurred.
+- [x] No homepage redesign implementation started during this corrective pass.
+
+**Track Correction Status**: PASSED.
+
+---
+
+## Phase 6-R1: Homepage Hero and Primary Positioning
+
+- **Date**: 2026-10-24
+- **Lead / Operator**: Senior Frontend Engineer & UI/UX Specialist
+- **Phase Objective**: Implement the first actual redesign batch for the public Octis marketing homepage based exclusively on `website.docx` (Section 1 and Section 15), strictly limited to `src/components/Hero.tsx`.
+
+---
+
+### 1. Step-by-Step Activities
+
+1. **Step 1 — Inspected Baseline and Requirements**:
+   - Re-verified exact directives in `website.docx` Section 1 (*"1. HOMEPAGE — CHANGE THE PRIMARY POSITIONING"*) and Section 15 (*"15. NUMBERS TO VERIFY BEFORE PUBLISHING"*).
+   - Inspected current `src/components/Hero.tsx`, `src/app/page.tsx`, and design tokens.
+   - Captured initial baseline hero screenshot at 1440×900: `hero_desktop_1440x900_1792780323966.png`.
+
+2. **Step 2 — Applied Documented Positioning in `Hero.tsx`**:
+   - **Category Pill Badge**: Added tasteful badge with live pulse indicator:
+     `AI-POWERED JEWELLERY ERP`
+   - **Primary Headline (H1)**: Updated to the required connected-business message with luxury gold gradient accent:
+     `Every Gram. Every Item. Every Rupee. Every Decision — Connected.`
+   - **Business Positioning Sub-Heading**: Integrated the exact required positioning:
+     `The Business Operating System for Modern Jewellery Businesses`
+   - **Secondary Ecosystem Positioning**: Added the required lead message:
+     `Run Your Entire Jewellery Business from One Powerful Ecosystem Platform.`
+   - **Supporting Copy & SEO Retention**: Integrated:
+     `From recording transactions to understanding your business.`
+     Retained full Indian jewellery-retailer SEO copy and agency text:
+     `Octis connects jewellery billing, inventory, metal, vendors, karigars, customers, pricing, accounting and business intelligence in one secure cloud platform — built specifically for Indian jewellery retailers.`
+   - **Trust & Compliance Badges**: Preserved and strengthened:
+     - `BIS Hallmarking Ready`
+     - `GST Auto-Calculation`
+     - `AI Jewellery Software Built for India`
+   - **Preserved Existing CTAs**:
+     - `Sign In` -> `/login`
+     - `Request Demo` -> `#cta`
+   - **Preserved Right Column Graphic**:
+     - Retained official `/hero-product.png` laptop mockup and floating interactive simulation card (`Today's Sales ₹4,85,200` with `DEMO` badge).
+
+3. **Step 3 — Applied Section 15 Credibility Gate**:
+   - Removed unverified credibility stats bar (`500+ Active Jewelers`, `10,000+ Daily Transactions`, `99.99% System Uptime`, `< 15 mins Support SLA`) from the public hero per explicit instructions.
+   - Prevented publication of unverified statistics while preserving clean visual balance and vertical rhythm.
+
+4. **Step 4 — Automated and Visual Verification**:
+   - **TypeScript Compilation**: `npx tsc --noEmit` passed with 0 errors.
+   - **Production Build**: `npm run build` compiled and generated all 12 routes successfully with 0 errors.
+   - **Responsive Browser Verification**:
+     - **Desktop (1440×900)**: `hero_redesign_desktop_1440x900_1792780525949.png` — Hero renders with clear typography, proper spacing, navbar visibility, and zero overflow.
+     - **Tablet (768×1024)**: `hero_redesign_tablet_768x1024_1792780949596.png` — Balanced centered layout, natural text wrapping, clean button stacking.
+     - **Mobile (390×844)**: `hero_redesign_mobile_390x844_1792780969222.png` — Mobile navbar hamburger remains unobstructed, text flows naturally, buttons expand full-width, zero horizontal scroll.
+   - **CTAs Verified**:
+     - Sign In button links to `/login`.
+     - Request Demo button anchors to `#cta`.
+   - **Non-Hero Sections**: Verified `Features`, `SpotlightSection`, `Compliance`, `Pricing`, `Faq`, `CtaBanner`, and `Footer` remain completely untouched.
+
+---
+
+### 2. Files Changed and Updated
+
+- [src/components/Hero.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/Hero.tsx) — Implemented Section 1 hero positioning, AI-POWERED JEWELLERY ERP badge, connected-business message, and removed unverified metrics bar.
+- [docs/homepage-redesign-plan.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/homepage-redesign-plan.md) — Updated Section 1 and Section 15 status to Implemented.
+- [docs/implementation-log.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/implementation-log.md) — Appended Phase 6-R1 record.
+
+---
+
+### 3. Acceptance Criteria Verification
+
+- [x] The existing hero has been updated according to `website.docx`.
+- [x] All required positioning messages are present ("AI-POWERED JEWELLERY ERP", "Every Gram...", "The Business Operating System...", "From recording transactions...").
+- [x] Existing approved copy and CTAs are preserved unless explicitly changed.
+- [x] SEO structure is retained (single H1, Indian jewellery retailer keywords, AI Jewellery Software naturally integrated).
+- [x] Desktop (1440×900), tablet (768×1024), and mobile (390×844) layouts are visually inspected and captured.
+- [x] No unverified business metrics have been introduced (unverified metrics bar removed per Section 15).
+- [x] TypeScript (`npx tsc --noEmit`) and production build (`npm run build`) pass cleanly.
+- [x] Other homepage sections and `/login` remain unchanged.
+- [x] The requirement map and implementation log reflect the actual result.
+
+**Phase 6-R1 Status**: PASSED.
+
+
+
 
 
 

@@ -1,14 +1,26 @@
 # Octis Website Recreation & Enhancement — Project Plan
 
-## 1. Project Overview & Objectives
+## 1. Project Overview & Corrected Scope
 
-This project executes a disciplined, two-milestone engineering workflow to reproduce and subsequently modernize the web presence of Octis ([https://octis.in/](https://octis.in/)), a cloud-based Jewellery Shop Management Software platform tailored for Indian retail jewellers.
+This project executes a disciplined engineering workflow to reproduce and modernize the public web presence of Octis ([https://octis.in/](https://octis.in/)), an AI-powered jewellery ERP and management software platform tailored for Indian retail jewellers.
 
-### Deliverables & Milestones
-- **Milestone A — Baseline Replica**: Reconstruct the publicly accessible Octis website, preserving its actual structure, verified copy, visual design, responsive behavior across mobile/desktop, and relevant interactions.
-- **Milestone B — Requested Modifications**: Apply the UI/UX enhancements and content adjustments specified in the developer document (`OCTIS_UIUX_Complete_Audit_and_Fix_Blueprint.docx`), while strictly preserving unaffected content and SEO structure.
+### Active Primary Workstream
+```
+Public Octis Homepage Clone (Completed)
+        ↓
+Public Homepage Redesign from "website.docx" (ACTIVE WORKSTREAM)
+        ↓
+Homepage Multi-Viewport QA, SEO & Production Delivery
+```
 
-> **CRITICAL RULE**: No Milestone B modification work may begin until Milestone A has been fully implemented, reviewed, and passed baseline verification.
+### Deliverables & Scope Classification
+1. **Public Marketing Website (IN SCOPE — Current Priority)**:
+   - **Baseline Clone (Completed in Phase 4)**: 100% faithful high-fidelity reconstruction of the live website at `https://octis.in/` and public authentication route `/login`.
+   - **Homepage Redesign (Active Task)**: Apply the exact content updates, AI positioning, differentiators, and pricing structure from `website.docx`.
+   - **Quality Assurance**: Cross-viewport visual fidelity (Desktop 1440px, Tablet 768px, Mobile 390px), keyboard accessibility, zero document overflow, and SEO metadata integrity.
+2. **Internal ERP Modules (EXPLICITLY OUT OF SCOPE FOR CURRENT TASK)**:
+   - The developer audit document `OCTIS_UIUX_Complete_Audit_and_Fix_Blueprint.docx` relates to internal ERP workflows (Dashboard, POS Billing, Inventory, Parties, BI, Settings).
+   - This track is paused and marked out of scope for the public marketing website task. Code created in Phase 6A/6B remains preserved in the repository but will not be expanded.
 
 ---
 
@@ -16,110 +28,70 @@ This project executes a disciplined, two-milestone engineering workflow to repro
 
 ```mermaid
 flowchart TD
-    P0["Phase 0: Workspace Audit & Initialization"] --> P1["Phase 1: Target Reconnaissance & Route Mapping"]
-    P1 --> P2["Phase 2: Project Scaffolding & Design System Foundation"]
-    P2 --> P3["Phase 3: Milestone A Baseline Implementation"]
-    P3 --> P4["Phase 4: Milestone A Verification & Baseline Gate"]
-    P4 -->|"Gate Passed (Sign-off)"| P5["Phase 5: Milestone B Implementation (Document Enhancements)"]
-    P5 --> P6["Phase 6: Final QA, Cross-Browser & Production Validation"]
-    P4 -.->|"Gate Failed"| P3
+    P1["Phase 1–3: Reconnaissance, Scaffolding & Baseline Implementation"] --> P4["Phase 4: Milestone A Verification & Baseline Gate (PASSED)"]
+    P4 --> P_CORRECT["Track Correction: Scope Realignment to website.docx"]
+    P_CORRECT --> P_PLAN["Phase 5-R: Homepage Redesign Planning & Mapping (CURRENT)"]
+    P_PLAN --> P_IMPL["Phase 6-R: Homepage Redesign Implementation (website.docx)"]
+    P_IMPL --> P_QA["Phase 7-R: Homepage Multi-Viewport QA & Production Polish"]
+
+    subgraph OutOfScope["Out of Scope (Paused)"]
+        ERP["Internal ERP Implementation (Phases 6A–6G)"]
+    end
 ```
 
-### Phase 0: Workspace Audit and Project Initialization (Current)
-- **Objective**: Audit the development environment, verify runtimes, check toolchains and browsers, assess cloning tool feasibility, confirm site accessibility, locate project assets/documents, and establish tracking documentation.
-- **Dependencies**: None.
+### Phase 1–3: Target Reconnaissance, Asset Harvesting & Baseline Build (COMPLETED)
+- Verified and downloaded official logos, icons, photography, and stylesheets from `https://octis.in/`.
+- Scaffolding in Next.js 15 App Router, TypeScript strict mode, and Tailwind CSS.
+- Built full homepage components (`Hero`, `Features`, `SpotlightSection`, `Compliance`, `Pricing`, `Faq`, `CtaBanner`, `Footer`, `Navbar`).
+
+### Phase 4: Baseline Clone Verification & Public Login (COMPLETED & PASSED)
+- Git commit `dc848fc`.
+- Homepage covering all 10 sections in exact sequence matching `https://octis.in/`.
+- Public login route (`/login`) with official branding and transparent notices.
+- Multi-viewport screenshots captured and verified (Desktop 1440, Tablet 768, Mobile 390).
+
+### Phase 5-R: Scope Realignment & Homepage Redesign Mapping (CURRENT PASS)
+- **Objective**: Realign project scope to the public website, locate and parse `website.docx` in full, and build an exhaustive requirements map.
+- **Deliverables**:
+  - `docs/homepage-redesign-plan.md` mapping all 16 numbered sections of `website.docx`.
+  - Updated `PROJECT_PLAN.md` with active public website workstream.
+  - Updated `docs/implementation-log.md` with scope correction entry.
+  - Zero modifications to public homepage or `/login` during this pass.
 - **Acceptance Criteria**:
-  - Environment audit and implementation log established in `docs/`.
-  - Node.js, npm, Git, browser paths, and network connectivity to `https://octis.in/` confirmed and recorded.
-  - Location and integrity of the developer document verified.
-  - Evaluation of candidate cloner template documented with fallback strategy.
-  - Zero application code written; no website construction started.
+  - `website.docx` located (`C:\Users\srika\Downloads\website.docx`) and verified in full.
+  - Internal ERP track classified out of scope.
+  - Original baseline clone preserved.
 
-### Phase 1: Target Site Reconnaissance & Route Mapping
-- **Objective**: Systematically inspect `https://octis.in/` using browser inspection tools and direct HTTP analysis.
+### Phase 6-R: Homepage Redesign Implementation (UPCOMING)
+- **Objective**: Implement the 16 content and positioning updates from `website.docx` into `src/app/page.tsx` and public marketing components.
 - **Scope**:
-  - Discover all routes, anchors, redirects, modals, and dynamic states (e.g., login, request demo form, scheme drawers).
-  - Extract typography rules, font families, exact color tokens (HSL/HEX/OKLCH), layout spacing, and breakpoint behavior.
-  - Inventory and catalog all assets: logos, SVGs, icons, illustrations, photography, and favicon.
-  - Capture desktop (1440px, 1280px) and mobile (375px, 390px) screenshots as baseline references.
-- **Dependencies**: Phase 0 sign-off.
-- **Acceptance Criteria**:
-  - Route inventory document created mapping all live URLs and states.
-  - Complete asset catalog populated with downloaded/verified public assets.
-  - Style sheet reference guide (colors, typography, grid/spacing) established.
+  - Hero primary positioning update ("AI-POWERED JEWELLERY ERP").
+  - Connected Business Flow ("Metal → ... → AI → Digital Commerce").
+  - Core Feature Differentiators (Complete Traceability, Vendor Intelligence, Article Profitability, Tally + Jewellery).
+  - Standalone AI Intelligence section ("From Jewellery Software to Jewellery Intelligence", 5 pillars, concrete examples).
+  - Pricing progression ("Starter = Run", "Professional = Understand", "Enterprise = Predict • Optimise • Scale").
+  - Enterprise customisation callout.
+  - Digital Commerce and AI Catalogue creation.
+  - Why Octis 8-pillar showcase.
+  - Final CTA tiered value messaging.
+  - FAQ expansion with 5 AI questions.
+  - Preserved SEO H1/H2 hierarchy and natural AI keyword inclusion.
+  - Credibility metrics verification gate.
 
-### Phase 2: Project Scaffolding & Design Foundation
-- **Objective**: Initialize a clean, robust frontend application skeleton matching the required tech stack.
+### Phase 7-R: Homepage QA, Cross-Browser & Production Delivery (UPCOMING)
+- **Objective**: Full responsive audit, interaction testing, accessibility check, and production build verification.
 - **Scope**:
-  - Initialize project (Next.js App Router / React with TypeScript strict mode, or Vite+React per architectural decision).
-  - Configure styling framework (Tailwind CSS v4 with custom design tokens matching Octis brand styles).
-  - Set up component structure (`src/components/`, `src/lib/`, `public/assets/`).
-  - Establish SEO metadata baseline (OpenGraph, meta tags, viewport configurations matching live site).
-- **Dependencies**: Phase 1 reconnaissance.
-- **Acceptance Criteria**:
-  - Clean build without errors (`npm run build` passes).
-  - Design tokens, global CSS, and typography correctly rendered.
-
-### Phase 3: Milestone A Implementation (Baseline Replica)
-- **Objective**: Faithfully build the baseline replica of the live Octis website.
-- **Scope**:
-  - Construct header, navigation, and mobile hamburger drawer.
-  - Construct hero section with live headline copy, metrics counter cards, and CTAs.
-  - Construct core feature grid (POS, inventory, metal rate sync, CRM, karigar management, analytics).
-  - Construct compliance showcase (BIS hallmarking, HUID, IT Act / KYC, PMLA / FIU reporting).
-  - Construct pricing tiers (Starter, Professional, Enterprise) and FAQ accordion.
-  - Construct footer with contact details, links, and copyright notice.
-  - Implement interactive states (smooth scroll anchors, accordion toggles, mobile menu toggle, modals).
-- **Dependencies**: Phase 2 scaffolding.
-- **Acceptance Criteria**:
-  - All public sections visible on `https://octis.in/` exist in code.
-  - Exact copy and branding match the live site.
-  - Responsive behavior matches desktop and mobile viewports.
-
-### Phase 4: Milestone A Verification & Baseline Gate (COMPLETED & PASSED)
-- **Status**: PASSED (Phases 4A, 4B, 4C fully executed and verified; Git commit `dc848fc`).
-- **Accomplishments**:
-  - Full Next.js 15 App Router application foundation with pinned dependencies.
-  - Complete faithful marketing homepage (`/`) covering all 10 sections in exact live sequence.
-  - Reconstructed public authentication route (`/login`) with official branding and transparent external service notices.
-  - Corrected `#inventory` anchor navigation and validated full-page responsive screenshots (Desktop 1440, Tablet 768, Mobile 390).
-  - Clean production build and zero horizontal overflow across all viewports.
-- **Milestone A Sign-off**: Gate authorized to commence Milestone B planning and mapping.
-
-### Phase 5: Blueprint Requirements Mapping and ERP Scope Preparation (COMPLETED)
-- **Objective**: Convert `OCTIS_UIUX_Complete_Audit_and_Fix_Blueprint.docx` and the 24 audit screenshots in `OCTIS_UIUX_Audit_Evidence` into an initial traceable implementation map and ERP architecture plan.
-- **Deliverables**: Initial `docs/blueprint-implementation-map.md` and `docs/erp-implementation-plan.md`.
-
-### Phase 5A: Requirement Traceability and Coverage Validation (Current)
-- **Objective**: Validate 100% census and traceability of every actionable recommendation from the blueprint before beginning ERP development.
-- **Accomplishments**:
-  - Reconciled complete inventory: 28 Core Issues, 2 Dashboard Issues, 28 Supplementary Module Review Items, and 11 Cross-Cutting Architectural Requirements (69 total actionable source items).
-  - Explicitly resolved all item overlaps and mapped shared implementation primitives (`DateRangeFilter`, `SemanticBalanceBadge`, `ResponsiveDataTable`, `SafeTagSearchInput`, `ErpBreadcrumbs`, `formatIndianCurrency`).
-  - Separated 62 frontend-only mockable items from 7 production backend constraints.
-  - Updated `docs/blueprint-implementation-map.md` and `docs/erp-implementation-plan.md`.
-- **Constraint**: Zero application source code modifications; no packages installed.
-
-### Phase 6: Milestone B ERP Module Implementation
-- **Phase 6A — ERP Foundation & Shared Architecture**: App Router `(erp)` route group, `ErpShell`, persistent sidebar, `DateRangeFilter`, and canonical mock stores.
-- **Phase 6B — Financial Trust & Safety (P0 Issues)**: Reconciled `/parties` directory & ledger (`PART-01` to `PART-07`), semantic balance badges (`CUST-03`), and safe inventory tag error boundary (`INV-01`).
-- **Phase 6C — Core POS & Sales Terminal (P1 Issues)**: Progressive loading shell (`POS-01`), integrated Metal Exchange deduction (`POS-02`), required notes validation (`POS-03`), and return bill selection (`POS-04`, `POS-05`).
-- **Phase 6D — Safe Inventory, Bulk Inward & Supplementary Modules**: Bulk entry wizard (`INV-02`), normalized casing (`INV-04`), Gold Schemes (`SCH-01`–`SCH-04`), Staff & Payroll (`STAFF-01`–`STAFF-07`), Procurement (`PROC-01`–`PROC-04`), Approvals (`APP-01`–`APP-04`), Reports (`REP-01`–`REP-04`), Settings (`SET-01`–`SET-05`).
-- **Phase 6E — Customer Management & KYC Privacy**: Persistent text navigation (`CUST-01`), masked Aadhaar/PAN fields (`CUST-02`), 360 profile dossier (`CUST-04`, `CUST-05`).
-- **Phase 6F — Business Intelligence & Graph Drill-Through**: Labeled BI tabs (`BI-01`), Indian rupee 2-decimal formatting (`BI-02`), auto-fit React Flow graph canvas (`BI-03`), operational deep links (`BI-04`), period filters (`BI-05`), and exposure risk hierarchy (`BI-06`).
-
-### Phase 7: Milestone B Final Verification, Responsive & Accessibility QA
-- **Objective**: Multi-viewport testing (1440px desktop, 768px tablet, 390px mobile) across all ERP routes.
-- **Scope**:
-  - End-to-end regression testing ensuring `/` and `/login` remain completely unaffected.
-  - Full keyboard accessibility and focus ring checks.
-  - Production build and TypeScript validation.
-  - Final comparison reporting and evidence capture.
+  - Desktop (1440 × 900), Tablet (768 × 1024), and Mobile (390 × 844) validation.
+  - Smooth scroll anchor verification (`#features`, `#inventory`, `#compliance`, `#pricing`, `#faq`, `#cta`).
+  - Mobile hamburger drawer testing.
+  - FAQ accordion keyboard and screen reader accessibility.
+  - `npx tsc --noEmit` and `npm run build` clean passage.
 
 ---
 
 ## 3. Governance Rules & Guardrails
 
-1. **Gate Discipline**: Under no circumstance will Milestone B enhancements be coded before Milestone A verification is signed off.
-2. **Fact Verification**: Real copy and assets from `https://octis.in/` must be used; no invented business statistics or placeholder text.
-3. **Fidelity Over Invention**: Emulation comes first. Personal design interpretations are strictly prohibited during Milestone A.
-4. **Isolated Tool Testing**: Any experimental cloning tool or cloner template must be evaluated in an isolated scratch directory and never applied destructively to the primary codebase.
+1. **Document Authority**: `website.docx` is the sole authoritative requirements document for the public website. `OCTIS_UIUX_Complete_Audit_and_Fix_Blueprint.docx` is strictly excluded from this track.
+2. **Preserve What Works**: Retain existing agency copy, section order, and structure unless specifically amended by `website.docx`.
+3. **No Fabricated Claims**: Do not invent metrics, client names, testimonials, or uptime statistics.
+4. **Baseline Recoverability**: Public homepage baseline remains cleanly tracked in Git (`f137b04` / `dc848fc`).
