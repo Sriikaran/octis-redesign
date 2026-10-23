@@ -1317,9 +1317,119 @@ This log provides a chronological record of all phases, actions, command executi
 - [x] Desktop, tablet, and mobile layouts inspected via browser subagent.
 - [x] TypeScript (`npx tsc --noEmit`) and production build (`npm run build`) pass with 0 errors.
 - [x] Unrelated sections remain unchanged.
-- [x] Documentation and Git history reflect actual result.
-
 **Phase 6-R3 Status**: PASSED.
+
+---
+
+## Phase 6-R4: Homepage Pricing, AI Plan Positioning & Enterprise Customisation
+
+### 1. Step-by-Step Activities
+
+1. **Step 1 — Audited Current Implementation & Authority Requirements**:
+   - Extracted and verified full text from `website.docx` (`C:\Users\srika\Downloads\website.docx`, Sections 5, 6, 7, 8, 9).
+   - Inspected existing `src/components/Pricing.tsx` structure and its `#pricing` anchor, 3-tier card layout, and integration in `src/app/page.tsx`.
+   - Maintained strict boundaries: zero edits to Hero, Features, AIIntelligence, SpotlightSection, Compliance, FAQ, CTA, Footer, or internal ERP modules.
+
+2. **Step 2 — Overall Pricing Positioning & Value Progression**:
+   - Preserved three-plan structure: **Starter**, **Professional**, **Enterprise**.
+   - Preserved `#pricing` anchor and `Custom / month` pricing terms.
+   - Updated pricing section supporting line to verbatim source copy:
+     *"Start with Daily Operations. Unlock AI Intelligence. Scale with Advanced AI and Customisation."*
+   - Implemented visual tier progression chip bar:
+     `RUN → UNDERSTAND → PREDICT • OPTIMISE • SCALE`.
+
+3. **Step 3 — Revised Starter Plan**:
+   - Concept: `STARTER`, Tier Label: `RUN`.
+   - Supporting tagline: *"Run your everyday operations."*
+   - Preserved original agency audience description: *"For single-branch showrooms getting started with digital billing."*
+   - Preserved all 5 agency features: `POS & billing`, `Inventory tagging`, `GST invoices`, `Basic reports`, `Email support`.
+   - Added explicit feature clarification: `No AI Business Intelligence` styled with a subtle minus-circle indicator.
+
+4. **Step 4 — Positioned Professional Plan (AI Starts Here)**:
+   - Concept: `PROFESSIONAL`, Tier Label: `UNDERSTAND`, Tagline: *"Use Business Intelligence + AI to understand your business."*
+   - Badges: `AI Starts Here` & `Most Popular`.
+   - Updated plan description: *"For growing jewellery businesses that want deeper business visibility and AI-powered intelligence."*
+   - Verified 12-item feature list:
+     - `Everything in Starter` (highlighted)
+     - `AI Business Insights`
+     - `AI Stock & Dead Stock Analysis`
+     - `AI Profit & Margin Insights`
+     - `AI Vendor Intelligence`
+     - `AI Alerts & Recommendations`
+     - `100+ Business Reports`
+     - `Karigar Management`
+     - `Gold / Silver Schemes & CRM`
+     - `Digital Catalogue`
+     - `Configurable Business Rules`
+     - `Priority Support`
+   - Removed `Custom Workflows` from Professional (reserved for Enterprise).
+   - Integrated outcome summary callout box:
+     *"Professional helps you understand: What is happening → Why it is happening → What needs attention → What action to consider."*
+
+5. **Step 5 — Positioned Enterprise Plan (Predict • Optimise • Scale)**:
+   - Concept: `ENTERPRISE`, Tier Label: `PREDICT • OPTIMISE • SCALE`.
+   - Supporting tagline: *"Use advanced AI, customisation and centralised control to scale."*
+   - Badge: `Scale & Control`.
+   - Updated plan description: *"For jewellery chains, multi-branch businesses and organisations requiring advanced intelligence, centralised control and business-specific customisation."*
+   - Verified 13-item feature list:
+     - `Everything in Professional` (highlighted)
+     - `AI Catalogue Image Generation`
+     - `Predictive Sales Insights`
+     - `AI Purchase Recommendations`
+     - `Advanced AI-Powered Business Alerts`
+     - `Multi-Branch Management`
+     - `Custom Roles & Permissions`
+     - `Custom Workflows`
+     - `Business-Specific Customisation`
+     - `Advanced Business Intelligence`
+     - `Centralised Management & Reporting`
+     - `Dedicated Onboarding & Support`
+     - `SLA-backed Support`
+   - Integrated Enterprise formula callout box:
+     *"Enterprise Formula: Advanced AI + Multi-Branch + Customisation + Centralised Control"*.
+
+6. **Step 6 — Implemented Dedicated Enterprise Customisation Callout**:
+   - Added prominent full-width card within `#pricing` below the 3 plan cards.
+   - Heading: `Enterprise: Built Around Your Business`
+   - Badge: `Tailored Architecture` (`SlidersHorizontal`)
+   - Verbatim copy:
+     *"Every jewellery business operates differently. Enterprise is designed to be customised around your business requirements, workflows, roles, approvals, reporting and operational processes."*
+     *"Configure Octis around your existing business processes — including workflows, roles, permissions, approvals, reports and operational requirements."*
+   - Dedicated CTA button: *"Discuss Enterprise Setup"* linking cleanly to `#cta`.
+
+7. **Step 7 — Automated & Visual Verification**:
+   - **TypeScript Compilation**: `npx tsc --noEmit` exited with code 0 (zero errors).
+   - **Production Build**: `npm run build` compiled all 12 routes with static and dynamic pages with code 0.
+   - **Lint**: `next lint` prompts for initial eslint setup interactively; built-in Next.js type and lint validation passes during `next build`.
+   - **Responsive Browser Inspection**:
+     - **Desktop (1440×900)**: `desktop_pricing_cards_1792784657588.png`, `desktop_pricing_cards_lower_1792784667125.png`, `desktop_customisation_callout_1792784675068.png` — Verified card alignment, badges, feature lists, outcome boxes, and full-width customisation callout.
+     - **Tablet (768×1024)**: `tablet_pricing_1792784687040.png` — Layout scales smoothly; cards wrap cleanly into readable responsive widths.
+     - **Mobile (390×844)**: `mobile_pricing_1792784699880.png` — Single-column stacked cards, comfortable padding, no horizontal scrolling.
+
+---
+
+### 2. Files Changed and Updated
+
+- [src/components/Pricing.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/Pricing.tsx) — Implemented RUN → UNDERSTAND → PREDICT • OPTIMISE • SCALE progression, updated feature lists, Starter AI exclusion, Professional outcome summary, Enterprise formula, and dedicated Enterprise customisation callout.
+- [docs/homepage-redesign-plan.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/homepage-redesign-plan.md) — Updated Sections 5, 6, 7, 8, and 9 to Implemented (Phase 6-R4).
+- [docs/implementation-log.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/implementation-log.md) — Appended Phase 6-R4 execution log and verification results.
+
+---
+
+### 3. Acceptance Criteria Verification
+
+- [x] Three existing plans communicate `RUN → UNDERSTAND → PREDICT • OPTIMISE • SCALE` progression.
+- [x] Professional feature list matches `website.docx` exactly; `Custom Workflows` removed from Professional.
+- [x] Enterprise feature list includes all advanced AI, prediction, customisation, and central control features.
+- [x] Starter explicitly clarifies `No AI Business Intelligence` while preserving agency features.
+- [x] Dedicated Enterprise customisation callout added with heading `Enterprise: Built Around Your Business` and verbatim source text.
+- [x] All existing prices (`Custom / month`) and working actions (`#cta` anchors) preserved.
+- [x] Unrelated sections (Hero, Features, AIIntelligence, SpotlightSection, Compliance, FAQ, CTA, Footer, Login) remain unchanged.
+- [x] Visual verification completed across Desktop, Tablet, and Mobile viewports with screenshots inspected.
+- [x] TypeScript (`npx tsc --noEmit`) and production build (`npm run build`) pass.
+- [x] Implementation plan and log updated.
+
+**Phase 6-R4 Status**: PASSED.
 
 
 
