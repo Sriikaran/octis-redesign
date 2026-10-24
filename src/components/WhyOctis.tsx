@@ -144,14 +144,14 @@ export default function WhyOctis() {
                 {/* Optional journey, formula, or subtext footer */}
                 <div className="pt-3 border-t border-gold-200/40">
                   {pillar.flow && (
-                    <div className="flex flex-wrap items-center gap-1 text-[10px] font-mono text-muted-foreground">
+                    <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-muted-foreground">
                       {pillar.flow.map((step, idx) => (
-                        <span key={idx} className="flex items-center gap-1">
-                          <span className="px-1.5 py-0.5 rounded bg-gold-50/80 border border-gold-200/60 text-[#1a2f4a] font-medium">
+                        <span key={idx} className="inline-flex items-center gap-1">
+                          <span className="px-1.5 py-0.5 rounded bg-gold-50/80 border border-gold-200/60 text-[#1a2f4a] font-medium whitespace-nowrap">
                             {step}
                           </span>
                           {idx < pillar.flow!.length - 1 && (
-                            <span className="text-gold-400 font-bold">→</span>
+                            <span className="text-gold-400 font-bold select-none">→</span>
                           )}
                         </span>
                       ))}

@@ -41,7 +41,10 @@ export default function Pricing() {
         { text: "Email support", included: true },
         { text: "No AI Business Intelligence", included: false, isClarification: true },
       ],
-      summaryNote: null,
+      summaryNote: {
+        title: "Starter Focus:",
+        flow: "Showroom POS, inventory tagging, GST invoices, and daily reconciliation.",
+      },
       buttonStyle:
         "border border-input bg-card hover:bg-accent hover:text-accent-foreground shadow-sm text-foreground",
     },
@@ -224,19 +227,19 @@ export default function Pricing() {
                 </ul>
               </div>
 
-              {/* Outcome Summary Callout if present */}
+              {/* Outcome Summary Callout */}
               {plan.summaryNote && (
                 <div
-                  className={`mt-auto mb-6 p-3.5 rounded-xl text-xs border ${
+                  className={`mt-auto mb-6 p-3.5 rounded-xl text-xs border min-h-[72px] flex flex-col justify-center ${
                     plan.featured
-                      ? "bg-white/90 border-gold-300 text-espresso-950 shadow-xs"
-                      : "bg-muted/40 border-border text-foreground"
+                      ? "bg-white/95 border-gold-300 text-espresso-950 shadow-xs"
+                      : "bg-[#FAF8F4] border-gold-200/80 text-foreground"
                   }`}
                 >
                   <p className="font-bold mb-1 text-[11px] uppercase tracking-wider text-gold-800">
                     {plan.summaryNote.title}
                   </p>
-                  <p className="leading-relaxed font-medium text-muted-foreground">
+                  <p className="leading-relaxed font-medium text-muted-foreground text-[11px]">
                     {plan.summaryNote.flow}
                   </p>
                 </div>
@@ -245,7 +248,7 @@ export default function Pricing() {
               {/* Action Button */}
               <a
                 href="#cta"
-                className={`inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] h-11 px-4 py-2 w-full mt-2 ${plan.buttonStyle}`}
+                className={`inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-[0.98] h-12 px-4 py-2 w-full ${plan.buttonStyle}`}
               >
                 Contact for pricing
               </a>

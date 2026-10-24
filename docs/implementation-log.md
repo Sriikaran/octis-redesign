@@ -1685,3 +1685,87 @@ This log provides a chronological record of all phases, actions, command executi
 - [x] TypeScript (`npx tsc --noEmit`) and production build (`npm run build`) pass with 0 errors.
 
 **Phase 6-R7 Status**: PASSED.
+
+---
+
+## Phase 6-R8: Homepage Visual Refinement, Copy Simplification & Interaction Polish
+
+- **Date**: 2026-10-24
+- **Lead / Operator**: Senior Frontend Engineer & UI/UX Specialist
+- **Phase Objective**: Execute a comprehensive visual refinement pass across the public marketing homepage based on `website.docx` and the 5 specific defect screenshots provided by the user. Eliminate layout defects, balance asymmetric grids, eliminate washed-out translucent overlays, simplify repetitive marketing copy, standardize typography hierarchy, and implement subtle, accessible motion.
+
+---
+
+### 1. Root Cause Analysis & Corrective Actions
+
+1. **Defect 1 — 13 Connected Stages Flow (Defect Screenshot 1)**:
+   - *Root Cause*: Container used uncontrolled `flex flex-wrap items-center justify-center` with unconditional trailing `ChevronRight` icons. On standard desktop viewports, items wrapped arbitrarily into 8 pills on row 1 and 5 pills on row 2, leaving the 8th item pointing into empty whitespace while the bottom lifecycle text was clipped on the left due to inadequate container padding.
+   - *Correction*: Re-architected `src/components/Features.tsx` to use an intentional two-tier layout:
+     - Desktop (`lg:flex`): A deliberate 2-row flow (Row 1: stages 01–07 with inline chevrons, Row 2: stages 08–13 with inline chevrons, zero trailing arrows).
+     - Mobile/Tablet: A responsive, numbered CSS grid (`grid-cols-2 sm:grid-cols-3 md:grid-cols-4`) where stage numbers provide sequential clarity without ambiguous wrapping arrows.
+     - Bottom Lifecycle Text: Fixed container padding and updated label to *"13 Connected Stages • One Unified Jewellery Workflow"* to eliminate visual crowding.
+
+2. **Defect 2 — Traceability Matrix Journey & Article Profitability Steppers (Defect Screenshots 2 & 5)**:
+   - *Root Cause*: Steps were rendered as isolated flex-wrap badge fragments. When badges wrapped across lines, trailing `ChevronRight` arrows became detached from their preceding chips, creating confusing dangling arrows and awkward single-word lines (e.g. `Tag →` wrapping to a new line before `Stock → Sale`).
+   - *Correction*:
+     - In `src/components/Features.tsx`, redesigned both journeys into structured, responsive steppers:
+       - *Traceability Matrix*: 7-column structured grid (`01 Purchase → 02 Inward → 03 Karigar → 04 Finished Jewellery → 05 Tag → 06 Stock → 07 Sale`) with contained inline arrows and clean mobile wrapping.
+       - *Article Profitability*: 6-column structured grid (`01 Purchase Cost → 02 Making → 03 Wastage → 04 Stones → 05 Selling Price → 06 Margin`), with `Margin` highlighted with a gold background.
+     - In `src/components/WhyOctis.tsx`, updated Pillar 03 and 05 micro-steppers to `inline-flex items-center gap-1` with `whitespace-nowrap` to ensure arrows stay permanently coupled to their step text.
+
+3. **Defect 3 — AI Intelligence 5 Example Cards (Defect Screenshot 3)**:
+   - *Root Cause*: The 5 example cards were placed in a 3-column grid (`lg:grid-cols-3`). Because 5 is not divisible by 3, row 1 had 3 cards and row 2 had only 2 left-aligned cards with a conspicuous empty slot on the right, giving an unfinished appearance.
+   - *Correction*: Changed layout in `src/components/AIIntelligence.tsx` to `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-3.5`, creating a clean, balanced single-row desktop layout that mirrors the 5 intelligence pillars directly above it. Simplified copy to punchy, benefit-driven questions without redundant quotation marks.
+
+4. **Defect 4 — Washed-Out Digital Commerce Preview (Defect Screenshot 4)**:
+   - *Root Cause*: In `src/components/SpotlightDigitalCommerce.tsx`, the outer preview frame was styled with `.landing-mockup-frame`. In `globals.css`, that utility applies a heavy dual-gradient intended for image frames. Because Digital Commerce renders an interactive HTML mockup rather than an image asset, the conflicting gradient combined with inner `bg-black/25` produced a translucent, low-contrast grey overlay that washed out text, obscured inactive pipeline steps, and faded product metadata.
+   - *Correction*:
+     - Removed `.landing-mockup-frame` from the HTML mockup container.
+     - Implemented a crisp, high-contrast ivory/white card surface (`bg-white border border-gold-300/70 shadow-2xl text-[#1a2f4a]`).
+     - Styled pipeline steps (`Step 1 Showroom ERP`, `Step 2 Digital Catalogue`, `Step 3 AI Imagery`) with distinct white card surfaces, visible borders, and crisp dark text.
+     - Styled the sample product card with high contrast: `Handcrafted Antique Temple Choker` in bold serif, `SAMPLE SKU: NK-22K-8092 • HUID #OCT892`, emerald `Illustrative Preview` badge, and crystal-clear specification metrics (Purity, Gross Wt, Net Gold).
+     - Styled AI Catalogue Creation callout in warm gold/amber with dark readable ink.
+
+5. **Defect 5 — Pricing and CTA Card Height & Alignment**:
+   - *Correction*:
+     - In `src/components/Pricing.tsx`, balanced the Starter card structure by adding an approved positioning summary note (`Starter Focus: Showroom POS, inventory tagging, GST invoices, and daily reconciliation.`) matching the summary heights of Professional and Enterprise (`min-h-[72px]`).
+     - Aligned card heights, feature containers (`flex-1`), and CTA buttons (`h-12`) horizontally across all three desktop cards.
+     - In `src/components/CtaBanner.tsx`, added `h-full` to the 3 tier progression cards so they stretch and align equally, with standardized `.btn-primary` and `.btn-secondary` classes.
+
+6. **Motion & Accessibility System**:
+   - *Implementation*: Added subtle `@keyframes fadeInUp` and `.animate-fade-in-up` in `src/app/globals.css`. Standardized `.btn-primary` (gold gradient with dark ink text and hover elevation) and `.btn-secondary` (translucent dark with gold border).
+   - *Accessibility*: Enforced `@media (prefers-reduced-motion: reduce)` in `globals.css` to disable transform translations and opacity delays for users requesting reduced motion.
+
+---
+
+### 2. Files Changed and Updated
+
+- [src/app/globals.css](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/globals.css) — Added motion utilities, standardized button classes, and reduced-motion accessibility overrides.
+- [src/components/Features.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/Features.tsx) — Rebuilt 13-stage flow into intentional 2-row desktop layout; structured Traceability and Article Profitability steppers.
+- [src/components/AIIntelligence.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/AIIntelligence.tsx) — Converted 5 example cards into balanced 5-column grid; simplified question copy.
+- [src/components/SpotlightDigitalCommerce.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/SpotlightDigitalCommerce.tsx) — Removed washed-out overlay; created crisp, high-contrast ivory preview showcase.
+- [src/components/Pricing.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/Pricing.tsx) — Aligned card heights, summaries, and CTA buttons across all three tiers.
+- [src/components/CtaBanner.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/CtaBanner.tsx) — Aligned tier card heights and standardized button hierarchy.
+- [src/components/WhyOctis.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/WhyOctis.tsx) — Refined micro-stepper inline wrapping in value pillars.
+- [docs/implementation-log.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/implementation-log.md) — Recorded Phase 6-R8 defects, root causes, corrections, and test results.
+
+---
+
+### 3. Acceptance Criteria Verification
+
+- [x] Connected flow (13 stages) displays in intentional rows with zero dangling arrows or clipped text.
+- [x] Traceability Matrix Journey and Article Profitability Journey steppers have zero broken or detached arrows.
+- [x] 5 AI Intelligence example cards are arranged in a balanced 5-column layout with no empty grid slots.
+- [x] Digital Commerce preview is crisp, high-contrast, and free of washed-out translucent overlays.
+- [x] Pricing cards and CTA cards are aligned in height, internal padding, summaries, and button placement.
+- [x] Headings dominate supporting text with clear typographic hierarchy.
+- [x] Redundant copy simplified while preserving all approved domain requirements, pricing amounts, and FAQ answers.
+- [x] Subtle motion implemented with full `prefers-reduced-motion` accessibility support.
+- [x] Multi-viewport layout verified across Desktop (1440 × 900), Tablet (768 × 1024), and Mobile (390 × 844).
+- [x] `npx tsc --noEmit` exited with code 0 (zero TypeScript errors).
+- [x] `npm run build` compiled 12/12 static pages with code 0.
+- [x] `npm test` ran 14/14 tests with 100% pass rate.
+- [x] All unrelated uncommitted ERP dashboard files strictly preserved in the working tree.
+
+**Phase 6-R8 Status**: PASSED.
+

@@ -88,39 +88,88 @@ export default function Features() {
           </div>
 
           {/* Flow Container */}
-          <div className="glass-card p-6 sm:p-8 lg:p-10 border border-gold-300/40 shadow-xl shadow-gold-500/5 rounded-2xl bg-white/90">
-            <div
-              className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 lg:gap-3"
-              aria-label="Connected Jewellery Business Flow"
-            >
+          <div className="glass-card p-6 sm:p-8 lg:p-10 border border-gold-300/40 shadow-xl shadow-gold-500/5 rounded-2xl bg-white/95">
+            {/* Desktop: 2 Intentional Balanced Connected Rows */}
+            <div className="hidden lg:flex flex-col gap-3.5 items-center" aria-label="Connected Jewellery Business Flow">
+              {/* Row 1: Operations to Billing (01 to 07) */}
+              <div className="flex items-center justify-center gap-2">
+                {businessFlowStages.slice(0, 7).map((stage, idx) => (
+                  <div key={idx} className="flex items-center">
+                    <div
+                      className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
+                        stage.isAi
+                          ? "bg-gradient-to-r from-gold-500 to-[#9a7209] text-white shadow-md ring-2 ring-gold-400/50"
+                          : "bg-[#FAF8F4] border border-gold-200/80 text-[#1a2f4a] hover:border-gold-400/80 hover:bg-white"
+                      }`}
+                    >
+                      <span className="text-[11px] opacity-60 font-mono">
+                        {(idx + 1).toString().padStart(2, "0")}
+                      </span>
+                      <span>{stage.name}</span>
+                    </div>
+                    {idx < 6 && (
+                      <ChevronRight className="w-3.5 h-3.5 text-gold-500 mx-1 flex-shrink-0" />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Row 2: Customers, Accounts & Intelligence (08 to 13) */}
+              <div className="flex items-center justify-center gap-2">
+                {businessFlowStages.slice(7).map((stage, idx) => {
+                  const actualIdx = idx + 7;
+                  return (
+                    <div key={actualIdx} className="flex items-center">
+                      <div
+                        className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
+                          stage.isAi
+                            ? "bg-gradient-to-r from-gold-500 to-[#9a7209] text-white shadow-md shadow-gold-500/25 ring-2 ring-gold-400/50 font-bold"
+                            : "bg-[#FAF8F4] border border-gold-200/80 text-[#1a2f4a] hover:border-gold-400/80 hover:bg-white"
+                        }`}
+                      >
+                        <span className={`text-[11px] font-mono ${stage.isAi ? "text-gold-200" : "opacity-60"}`}>
+                          {(actualIdx + 1).toString().padStart(2, "0")}
+                        </span>
+                        <span>{stage.name}</span>
+                        {stage.isAi && <Sparkles className="w-3.5 h-3.5 text-gold-200" />}
+                      </div>
+                      {idx < businessFlowStages.slice(7).length - 1 && (
+                        <ChevronRight className="w-3.5 h-3.5 text-gold-500 mx-1 flex-shrink-0" />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Tablet & Mobile: Deliberate Numbered Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:hidden gap-2 sm:gap-2.5">
               {businessFlowStages.map((stage, idx) => (
-                <div key={idx} className="flex items-center">
-                  <div
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
-                      stage.isAi
-                        ? "bg-gradient-to-r from-gold-500 to-[#9a7209] text-white shadow-md shadow-gold-500/25 ring-2 ring-gold-400/50"
-                        : "bg-[#FAF8F4] border border-gold-200/80 text-[#1a2f4a] hover:border-gold-400/80 hover:bg-white"
-                    }`}
-                  >
-                    <span className="text-[10px] sm:text-xs opacity-60 font-mono">
+                <div
+                  key={idx}
+                  className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold border ${
+                    stage.isAi
+                      ? "bg-gradient-to-r from-gold-500 to-[#9a7209] text-white border-gold-400 shadow-sm"
+                      : "bg-[#FAF8F4] border-gold-200/80 text-[#1a2f4a]"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[10px] font-mono ${stage.isAi ? "text-gold-200" : "text-gold-700"}`}>
                       {(idx + 1).toString().padStart(2, "0")}
                     </span>
-                    <span>{stage.name}</span>
-                    {stage.isAi && <Sparkles className="w-3.5 h-3.5 text-gold-200" />}
+                    <span className="truncate">{stage.name}</span>
                   </div>
-                  {idx < businessFlowStages.length - 1 && (
-                    <ChevronRight className="w-3.5 h-3.5 text-gold-400/80 mx-1 flex-shrink-0" />
-                  )}
+                  {stage.isAi && <Sparkles className="w-3.5 h-3.5 text-gold-200 flex-shrink-0" />}
                 </div>
               ))}
             </div>
 
             <div className="mt-6 pt-5 border-t border-border/40 flex flex-wrap items-center justify-between text-xs text-muted-foreground gap-3">
-              <span className="font-medium text-foreground">End-to-End Operational Lifecycle</span>
+              <span className="font-semibold text-foreground">End-to-End Operational Lifecycle</span>
               <span className="flex items-center gap-1.5 text-primary font-semibold">
-                <span>13 Connected Modules</span>
+                <span>13 Connected Stages</span>
                 <span className="text-muted-foreground font-normal">
-                  • Connected Jewellery Operations
+                  • One Unified Jewellery Workflow
                 </span>
               </span>
             </div>
@@ -160,15 +209,15 @@ export default function Features() {
                   Track Every Gram. Every Item. Every Movement.
                 </p>
                 <p className="text-sm text-brown-500 leading-relaxed mb-6">
-                  Use the Traceability Matrix to follow the complete journey of stock and metal across every production and sales milestone.
+                  Follow the complete journey of stock and metal across every production and sales milestone.
                 </p>
 
-                {/* Step Flow Ribbon */}
+                {/* Step Flow Stepper */}
                 <div className="p-3.5 rounded-xl bg-[#FAF8F4] border border-gold-200/70">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-2">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-2.5">
                     Traceability Matrix Journey
                   </p>
-                  <div className="flex flex-wrap items-center gap-1.5 text-xs font-semibold text-[#1a2f4a]">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-1.5 sm:gap-2">
                     {[
                       "Purchase",
                       "Inward",
@@ -177,15 +226,16 @@ export default function Features() {
                       "Tag",
                       "Stock",
                       "Sale",
-                    ].map((step, sIdx, arr) => (
-                      <span key={sIdx} className="inline-flex items-center">
-                        <span className="px-2 py-0.5 rounded bg-white border border-border/80 shadow-xs">
+                    ].map((step, sIdx) => (
+                      <div
+                        key={sIdx}
+                        className="flex flex-col items-center justify-center py-2 px-1.5 rounded-lg bg-white border border-gold-200/80 text-center shadow-xs"
+                      >
+                        <span className="text-[10px] font-mono font-bold text-gold-700">0{sIdx + 1}</span>
+                        <span className="text-xs font-semibold text-[#1a2f4a] mt-0.5 leading-snug">
                           {step}
                         </span>
-                        {sIdx < arr.length - 1 && (
-                          <ChevronRight className="w-3 h-3 text-gold-500 mx-0.5 flex-shrink-0" />
-                        )}
-                      </span>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -255,10 +305,10 @@ export default function Features() {
 
                 {/* Article Cost Breakdown */}
                 <div className="p-3.5 rounded-xl bg-[#FAF8F4] border border-gold-200/70">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-2">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-2.5">
                     True Margin Calculation Flow
                   </p>
-                  <div className="flex flex-wrap items-center gap-1.5 text-xs font-semibold text-[#1a2f4a]">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2">
                     {[
                       "Purchase Cost",
                       "Making",
@@ -266,21 +316,30 @@ export default function Features() {
                       "Stones",
                       "Selling Price",
                       "Margin",
-                    ].map((step, sIdx, arr) => (
-                      <span key={sIdx} className="inline-flex items-center">
+                    ].map((step, sIdx) => (
+                      <div
+                        key={sIdx}
+                        className={`flex flex-col items-center justify-center py-2 px-1.5 rounded-lg border text-center shadow-xs ${
+                          step === "Margin"
+                            ? "bg-primary text-white border-primary"
+                            : "bg-white border-gold-200/80 text-[#1a2f4a]"
+                        }`}
+                      >
                         <span
-                          className={`px-2 py-0.5 rounded border shadow-xs ${
-                            step === "Margin"
-                              ? "bg-primary text-white border-primary font-bold"
-                              : "bg-white border-border/80"
+                          className={`text-[10px] font-mono font-bold ${
+                            step === "Margin" ? "text-gold-100" : "text-gold-700"
+                          }`}
+                        >
+                          0{sIdx + 1}
+                        </span>
+                        <span
+                          className={`text-xs font-semibold mt-0.5 leading-snug ${
+                            step === "Margin" ? "text-white" : "text-[#1a2f4a]"
                           }`}
                         >
                           {step}
                         </span>
-                        {sIdx < arr.length - 1 && (
-                          <ChevronRight className="w-3 h-3 text-gold-500 mx-0.5 flex-shrink-0" />
-                        )}
-                      </span>
+                      </div>
                     ))}
                   </div>
                 </div>

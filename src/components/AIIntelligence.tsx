@@ -58,19 +58,19 @@ export default function AIIntelligence() {
     {
       domain: "Stock",
       title: "Stock Intelligence",
-      question: "What is selling? What is becoming dead stock? Where is capital stuck?",
+      question: "What is selling, becoming dead stock, or tying up capital?",
       icon: Boxes,
     },
     {
       domain: "Profit",
       title: "Profit Intelligence",
-      question: "Which articles have better margins? Where is margin leaking?",
+      question: "Which articles have better margins, and where is margin leaking?",
       icon: Coins,
     },
     {
       domain: "Vendors",
       title: "Vendor Intelligence",
-      question: "Which vendor gives better prices? Which vendor’s stock is sitting?",
+      question: "Which vendors offer better prices, and whose stock is sitting?",
       icon: Scale,
     },
     {
@@ -182,32 +182,32 @@ export default function AIIntelligence() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-3.5">
             {examples.map((item, idx) => {
               const IconComp = item.icon;
               return (
                 <div
                   key={idx}
-                  className="landing-feature-card p-6 flex flex-col justify-between group hover:border-gold-400"
+                  className="landing-feature-card p-5 sm:p-6 flex flex-col justify-between group hover:border-gold-400 transition-all"
                 >
                   <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-lg bg-surface-tinted border border-gold-200/80 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                        <IconComp className="w-5 h-5" strokeWidth={2} />
+                    <div className="flex items-center gap-2.5 mb-3">
+                      <div className="w-9 h-9 rounded-lg bg-surface-tinted border border-gold-200/80 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors flex-shrink-0">
+                        <IconComp className="w-4 h-4" strokeWidth={2} />
                       </div>
                       <div>
                         <span className="text-[10px] font-bold uppercase tracking-wider text-primary">
                           {item.domain}
                         </span>
-                        <h4 className="font-display text-lg font-bold text-[#1a2f4a]">
+                        <h4 className="font-display text-base font-bold text-[#1a2f4a] leading-tight">
                           {item.title}
                         </h4>
                       </div>
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-[#FAF8F4] border border-gold-200/60">
-                      <p className="text-sm font-medium text-foreground leading-relaxed">
-                        “{item.question}”
+                    <div className="p-3 rounded-xl bg-[#FAF8F4] border border-gold-200/60">
+                      <p className="text-xs sm:text-sm font-medium text-foreground leading-relaxed">
+                        {item.question}
                       </p>
                     </div>
                   </div>
