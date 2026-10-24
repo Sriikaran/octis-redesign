@@ -139,13 +139,13 @@ export default function SpotlightDigitalCommerce() {
           <div className="rounded-xl bg-black/25 p-4 sm:p-5 border border-white/10 mb-5">
             <div className="flex justify-between items-start gap-3 mb-3">
               <div>
-                <p className="text-[11px] font-mono text-gold-300/80 uppercase">SKU: NK-22K-8092 • HUID #OCT892</p>
+                <p className="text-[11px] font-mono text-gold-300/80 uppercase">Sample SKU: NK-22K-8092 • HUID #OCT892</p>
                 <h5 className="font-display font-bold text-base sm:text-lg text-white">
                   Handcrafted Antique Temple Choker
                 </h5>
               </div>
               <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 whitespace-nowrap">
-                Live in Catalogue
+                Illustrative Preview
               </span>
             </div>
 

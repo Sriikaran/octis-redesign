@@ -1499,6 +1499,92 @@ This log provides a chronological record of all phases, actions, command executi
 
 **Phase 6-R5 Status**: PASSED.
 
+---
+
+## Phase 6-R6: Why Octis (8 Value Pillars) & FAQ Expansion
+
+### 1. Step-by-Step Activities
+
+1. **Step 1 — Audited Current Implementation & Authority Requirements**:
+   - Reviewed Sections 11 and 13 of `C:\Users\srika\Downloads\website.docx`.
+   - Verified the 8 required Why Octis pillars:
+     1. Built for Jewellery
+     2. One Connected Platform
+     3. Complete Traceability
+     4. Vendor Intelligence
+     5. Article Profitability
+     6. AI-Powered Decisions
+     7. Designed to Scale
+     8. Business-Specific Customisation
+   - Verified FAQ requirements: Preserve all 8 original FAQs verbatim; add 5 new AI-related questions from Section 13 (yielding 13 total).
+   - Conducted Step 5 sample SKU truthfulness check on `SpotlightDigitalCommerce.tsx`.
+
+2. **Step 2 — Sample SKU Truthfulness Check**:
+   - Inspected `src/components/SpotlightDigitalCommerce.tsx` for SKU `NK-22K-8092`.
+   - Updated copy to explicitly label the representation as `Sample SKU: NK-22K-8092 • HUID #OCT892` and changed the badge to `Illustrative Preview` to avoid any confusion with live customer production records.
+
+3. **Step 3 — Implemented Why Octis Component**:
+   - Created `src/components/WhyOctis.tsx` with anchor `id="why-octis"`.
+   - Section header: Label `CORE VALUE PROPOSITION`, H2 title `Why Octis`, and supporting description: *"Eight foundational pillars connecting daily showroom operations, metal traceability, business intelligence, and AI decision support."*
+   - Rendered all 8 pillars in a responsive grid (`grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6`) using `landing-feature-card` styling, gold numbered pills (`01`–`08`), Lucide icons, verbatim source statements, and operational descriptions.
+   - Added interactive flow and journey pills:
+     - Traceability: `Purchase → Inward → Karigar → Finished Jewellery → Tag → Stock → Sale`
+     - Article Profitability: `Purchase Cost → Making → Wastage → Stones → Selling Price → Margin`
+     - Designed to Scale: `Starter (Run) → Professional (Understand) → Enterprise (Scale)`
+
+4. **Step 4 — Positioned Why Octis in Homepage Flow**:
+   - Updated `src/app/page.tsx` to mount `<WhyOctis />` directly after `<SpotlightSection />` and before `<Compliance />`.
+   - Preserved all other existing sections and their import hierarchy.
+
+5. **Step 5 — Expanded FAQs (8 Original Preserved + 5 New AI FAQs)**:
+   - Updated `src/components/Faq.tsx` with all 5 new AI questions and answers verbatim from `website.docx` Section 13:
+     - FAQ 9: *Which OCTIS plan includes AI features?* (Clarifies Professional starts AI; Enterprise has advanced AI).
+     - FAQ 10: *What AI features are included in OCTIS Enterprise?* (Decision-support capabilities: catalogue image gen, predictive sales insights, purchase recommendations, advanced alerts).
+     - FAQ 11: *Can OCTIS identify dead stock?* (AI stock & dead-stock analysis in Professional & Enterprise).
+     - FAQ 12: *Can OCTIS provide purchase recommendations?* (AI purchase recommendations in Enterprise).
+     - FAQ 13: *Does OCTIS support business-specific customisation?* (Enterprise workflows, roles, permissions, approvals, reports).
+   - Confirmed total FAQ count is 13, all keyboard accessible, and accordion toggle functions smoothly.
+
+6. **Step 6 — Automated Verification**:
+   - **TypeScript Compilation**: `npx tsc --noEmit` exited with code 0 (zero errors).
+   - **Production Build**: `npm run build` compiled all routes with exit code 0.
+   - **Lint**: Next.js built-in type and lint verification passed during `next build` (standalone `next lint` is unconfigured/interactive).
+
+7. **Step 7 — Multi-Viewport Visual Inspection**:
+   - Restarted clean development server to ensure fresh client bundles.
+   - Conducted visual and interaction verification via browser subagent:
+     - **Desktop (1440×900)**: `r6_why_octis_desktop_centered_png_1792827787636.png`, `r6_faq_desktop_clean_1792827375897.png`, `r6_digital_commerce_sku_centered_png_1792827795596.png` — Verified 4-column pillar grid, FAQ accordion expansion with full answer readability, and "Sample SKU / Illustrative Preview" labels.
+     - **Tablet (768×1024)**: `r6_why_octis_tablet_clean_1792827542587.png`, `r6_faq_tablet_clean_1792827581983.png` — 2-column stacked layout, clear card padding, accordion buttons and carets align properly.
+     - **Mobile (390×844)**: `r6_why_octis_mobile_clean_1792827658030.png`, `r6_faq_mobile_clean_1792827716139.png` — Single-column layout, touch-friendly accordion toggles, zero horizontal overflow (`scrollWidth === innerWidth`).
+
+---
+
+### 2. Files Changed and Updated
+
+- [src/components/WhyOctis.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/WhyOctis.tsx) — Created 8-pillar value proposition component.
+- [src/app/page.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/app/page.tsx) — Mounted `WhyOctis` between `SpotlightSection` and `Compliance`.
+- [src/components/Faq.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/Faq.tsx) — Added 5 AI-related FAQs while preserving all 8 original FAQs.
+- [src/components/SpotlightDigitalCommerce.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/SpotlightDigitalCommerce.tsx) — Adjusted SKU preview labelling to "Sample SKU" and "Illustrative Preview" for truthfulness.
+- [docs/homepage-redesign-plan.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/homepage-redesign-plan.md) — Updated Sections 11 and 13 to Implemented (Phase 6-R6).
+- [docs/implementation-log.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/implementation-log.md) — Appended Phase 6-R6 execution log and verification results.
+
+---
+
+### 3. Acceptance Criteria Verification
+
+- [x] All eight Why Octis pillars exist and display with their required titles.
+- [x] Eight pillars use a responsive, coherent layout matching the Octis visual language.
+- [x] All eight original FAQs remain present with their original wording.
+- [x] Exactly five new AI-related FAQs added, bringing total count to 13.
+- [x] Each FAQ accordion expands and collapses cleanly with keyboard accessibility.
+- [x] Sample SKU preview in Digital Commerce explicitly labelled as sample/illustrative data.
+- [x] Unrelated sections (Hero, Features, AIIntelligence, Spotlights, Compliance, Pricing, CTA, Footer, Login, ERP routes) remain unchanged.
+- [x] TypeScript (`npx tsc --noEmit`) and production build (`npm run build`) pass.
+- [x] Implementation plan and log updated.
+
+**Phase 6-R6 Status**: PASSED.
+
+
 
 
 

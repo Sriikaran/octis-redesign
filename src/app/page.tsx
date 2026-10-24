@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import AIIntelligence from "@/components/AIIntelligence";
 import SpotlightSection from "@/components/SpotlightSection";
+import WhyOctis from "@/components/WhyOctis";
 import Compliance from "@/components/Compliance";
 import Pricing from "@/components/Pricing";
 import Faq from "@/components/Faq";
@@ -18,6 +19,7 @@ export default function Home() {
         <Features />
         <AIIntelligence />
         <SpotlightSection />
+        <WhyOctis />
         <Compliance />
         <Pricing />
         <Faq />

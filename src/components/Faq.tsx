@@ -47,6 +47,31 @@ export default function Faq() {
       answer:
         "Octis is built for jewellery retailers across India. Our cloud platform works on any browser — no special hardware required beyond your existing billing PC and barcode scanner.",
     },
+    {
+      question: "Which OCTIS plan includes AI features?",
+      answer:
+        "AI business features begin with the Professional plan. Professional includes AI business insights, stock and dead-stock analysis, profit and margin insights, vendor intelligence and AI alerts and recommendations.",
+    },
+    {
+      question: "What AI features are included in OCTIS Enterprise?",
+      answer:
+        "Enterprise includes advanced capabilities such as AI catalogue image generation, predictive sales insights, AI purchase recommendations and advanced AI-powered business alerts.",
+    },
+    {
+      question: "Can OCTIS identify dead stock?",
+      answer:
+        "Professional and Enterprise include AI-powered stock and dead-stock analysis to help identify slow-moving inventory and areas where capital may be tied up.",
+    },
+    {
+      question: "Can OCTIS provide purchase recommendations?",
+      answer:
+        "AI Purchase Recommendations are included in the Enterprise plan.",
+    },
+    {
+      question: "Does OCTIS support business-specific customisation?",
+      answer:
+        "Yes. Enterprise can be customised around business workflows, roles, permissions, approvals, reporting and operational requirements.",
+    },
   ];
 
   const toggleFaq = (index: number) => {
