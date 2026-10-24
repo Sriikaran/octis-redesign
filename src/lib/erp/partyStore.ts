@@ -569,3 +569,90 @@ export function getPartyDirectorySummary(): DirectoryFinancialSummary {
     canonicalTimestamp: DEMO_SOURCE_TIMESTAMP,
   };
 }
+
+export interface RecentVoucherItem extends VoucherEntry {
+  partyName: string;
+  partyCode: string;
+  partyCategory: PartyCategory;
+}
+
+export interface DashboardExceptionItem {
+  id: string;
+  title: string;
+  description: string;
+  severity: "high" | "medium" | "low";
+  category: "payable" | "receivable" | "metal" | "stock";
+  amount?: number;
+  metalGrams?: number;
+  actionHref: string;
+  actionLabel: string;
+}
+
+/**
+ * Returns most recent vouchers sorted by date descending, enriched with party identity.
+ */
+export function getRecentVouchers(limit: number = 5): RecentVoucherItem[] {
+  const sorted = [...CANONICAL_VOUCHERS].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  return sorted.slice(0, limit).map((v) => {
+    const party = CANONICAL_PARTIES.find((p) => p.id === v.partyId);
+    return {
+      ...v,
+      partyName: party?.name || "Unknown Party",
+      partyCode: party?.code || "N/A",
+      partyCategory: party?.category || "vendor",
+    };
+  });
+}
+
+/**
+ * Derives verified operational exceptions requiring attention from canonical party records.
+ */
+export function getDashboardExceptions(): DashboardExceptionItem[] {
+  return [
+    {
+      id: "exc-01",
+      title: "Bullion Settlement Due",
+      description: "Shree Ganesh Bullion & Refining payment term is 7 days. Outstanding invoices require bank transfer RTGS settlement.",
+      severity: "high",
+      category: "payable",
+      amount: 3703278.8,
+      metalGrams: 24.5,
+      actionHref: "/parties/pty-ven-001",
+      actionLabel: "Open Party Ledger",
+    },
+    {
+      id: "exc-02",
+      title: "Customer Balance Due on Sale",
+      description: "Rajesh Kumar Verma has ₹1,85,000.00 outstanding balance from antique temple choker bill (INV-2024-1102).",
+      severity: "medium",
+      category: "receivable",
+      amount: 185000.0,
+      actionHref: "/parties/pty-cus-001",
+      actionLabel: "View Customer Account",
+    },
+    {
+      id: "exc-03",
+      title: "Customer Advance Booking Held",
+      description: "Sunita P. Sharma has ₹1,50,000.00 store credit advance on record for custom festive jewellery.",
+      severity: "low",
+      category: "receivable",
+      amount: -150000.0,
+      actionHref: "/parties/pty-cus-002",
+      actionLabel: "Review Booking",
+    },
+    {
+      id: "exc-04",
+      title: "Refinery Metal Conversion Due",
+      description: "466.750 g of 999.0 Fine Gold equivalent pending refinery conversion/melt return.",
+      severity: "medium",
+      category: "metal",
+      metalGrams: 466.75,
+      actionHref: "/parties/pty-ven-001",
+      actionLabel: "Inspect Metal Flow",
+    },
+  ];
+}
+

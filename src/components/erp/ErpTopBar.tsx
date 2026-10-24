@@ -37,20 +37,22 @@ export const ErpTopBar: React.FC<ErpTopBarProps> = ({ onOpenMobileNav }) => {
             <Menu size={20} aria-hidden="true" />
           </button>
 
-          {/* Bullion Ticker */}
-          <div className="hidden sm:flex items-center gap-3 text-xs">
-            <span className="font-semibold uppercase tracking-wider text-stone-400 text-[10px]">
-              Live Bullion Rates:
+          {/* Demo Bullion Rates Indicator */}
+          <div className="hidden sm:flex items-center gap-2.5 text-xs">
+            <span
+              className="font-semibold uppercase tracking-wider text-amber-800 bg-amber-100/70 px-1.5 py-0.5 rounded text-[10px] border border-amber-200"
+              title="Sample rates for showroom demonstration — not connected to a live bullion market feed"
+            >
+              Demo Metal Rates (Sample):
             </span>
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-gold-50 text-gold-900 border border-gold-200 font-mono font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse" />
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-gold-50 text-gold-900 border border-gold-200 font-mono text-[11px] font-medium" title="Sample 24K demonstration rate">
                 24K: ₹7,950/g
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-stone-100 text-stone-800 border border-stone-200 font-mono font-medium">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-stone-100 text-stone-800 border border-stone-200 font-mono text-[11px] font-medium" title="Sample 22K (916) demonstration rate">
                 22K (916): ₹7,285/g
               </span>
-              <span className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded bg-stone-100 text-stone-700 border border-stone-200 font-mono">
+              <span className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded bg-stone-100 text-stone-700 border border-stone-200 font-mono text-[11px]" title="Sample Silver demonstration rate">
                 Silver: ₹94.50/g
               </span>
             </div>
