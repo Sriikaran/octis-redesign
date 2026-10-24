@@ -1431,6 +1431,74 @@ This log provides a chronological record of all phases, actions, command executi
 
 **Phase 6-R4 Status**: PASSED.
 
+---
+
+## Phase 6-R5: Operational Spotlights, Digital Commerce & AI Catalogue
+
+### 1. Step-by-Step Activities
+
+1. **Step 1 — Audited Current Implementation & Authority Requirements**:
+   - Reviewed Section 10 of `C:\Users\srika\Downloads\website.docx` ("Digital Commerce & AI Catalogue").
+   - Verified directives: Preserve existing agency POS and Inventory spotlights; add Digital Commerce ("Turn your live ERP inventory into a customer-facing digital catalogue and website.") and AI Catalogue Creation ("Create professional, catalogue-ready jewellery imagery using AI-powered image generation tools.").
+   - Retained plan tier boundaries established in Phase 6-R4: Digital Catalogue in Professional & Enterprise; AI Catalogue Image Generation strictly in Enterprise tier.
+   - Enforced claims discipline: No fake e-commerce sales statistics, no unverified third-party platform claims, and no simulated conversion metrics.
+
+2. **Step 2 — Created Dedicated Digital Commerce & AI Catalogue Component**:
+   - Implemented `src/components/SpotlightDigitalCommerce.tsx` with anchor `id="digital-commerce"`.
+   - Section label: `Digital Commerce` (`Globe` icon).
+   - Headline: `From Your Jewellery ERP to Your Customer-Facing Catalogue`.
+   - Verbatim copy:
+     *"Turn your live ERP inventory into a customer-facing digital catalogue and website. Digital Commerce connects internal jewellery operations with how customers discover and view products, presenting showroom stock as a coherent extension of your business system."*
+   - Three key capability points with tier indicators:
+     - **From Live ERP to Online Catalogue** (`Professional & Enterprise`): Present tagged showroom inventory directly to customers without duplicate entry or re-tagging.
+     - **Connected Customer Product Discovery** (`Professional & Enterprise`): Enable customers to view collections, specifications, and availability backed by operational jewellery data.
+     - **AI Catalogue Image Generation** (`Enterprise Tier`, highlighted with `Sparkles` icon): Create professional, catalogue-ready jewellery imagery using AI-powered image generation tools.
+   - Interactive visual operational journey card:
+     - Interactive step flow: `Showroom ERP` → `Digital Catalogue` → `AI Imagery`.
+     - Live SKU preview item (`NK-22K-8092`, 22K Yellow Gold Necklace, 42.650g) showing synchronized operational metadata and catalogue-ready presentation.
+     - Tier callout footnote clarifying tier eligibility (Digital Catalogue in Professional; AI Image Generation in Enterprise).
+
+3. **Step 3 — Integrated into Spotlight Section**:
+   - Modified `src/components/SpotlightSection.tsx` to render `<SpotlightDigitalCommerce />` directly beneath `<SpotlightInventory />`.
+   - Preserved `<SpotlightPos />` and `<SpotlightInventory />` with existing official mockups (`/pos-mockup.png`, `/inventory-mockup.png`).
+   - Maintained visual alternating rhythm: POS (text-left / image-right) → Inventory (image-left / text-right) → Digital Commerce (text-left / operational pipeline card-right).
+
+4. **Step 4 — Automated Verification**:
+   - **TypeScript Compilation**: `npx tsc --noEmit` exited with code 0 (zero errors).
+   - **Production Build**: `npm run build` compiled all routes successfully with code 0.
+   - **Lint**: Next.js built-in type and lint verification passed during `next build`.
+
+5. **Step 5 — Multi-Viewport Visual Inspection**:
+   - Executed visual verification using browser subagent on local running server (`http://localhost:3000/#digital-commerce`):
+     - **Desktop (1440×900)**: `C:\Users\srika\.gemini\antigravity-ide\brain\53209a0c-8061-4f1a-bc2e-b4698373bf5c\r5_digital_commerce_desktop_1792825640003.png` — Verified two-column layout, pill badge, typography hierarchy, feature items with tier badges, and live pipeline card.
+     - **Tablet (768×1024)**: `C:\Users\srika\.gemini\antigravity-ide\brain\53209a0c-8061-4f1a-bc2e-b4698373bf5c\r5_digital_commerce_tablet_1792825652830.png` — Stacks gracefully into single column with comfortable spacing and no clipping.
+     - **Mobile (390×844)**: `C:\Users\srika\.gemini\antigravity-ide\brain\53209a0c-8061-4f1a-bc2e-b4698373bf5c\r5_digital_commerce_mobile_1792825663147.png` — Single-column layout, fluid padding, zero horizontal overflow (`scrollWidth === innerWidth`).
+
+---
+
+### 2. Files Changed and Updated
+
+- [src/components/SpotlightDigitalCommerce.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/SpotlightDigitalCommerce.tsx) — Created Digital Commerce and AI Catalogue showcase component with tier indicators and operational pipeline card.
+- [src/components/SpotlightSection.tsx](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/src/components/SpotlightSection.tsx) — Integrated Digital Commerce component into operational spotlights while preserving POS and Inventory spotlights.
+- [docs/homepage-redesign-plan.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/homepage-redesign-plan.md) — Updated Section 10 status to Implemented (Phase 6-R5).
+- [docs/implementation-log.md](file:///c:/Users/srika/OneDrive/Desktop/octis%20redesign/docs/implementation-log.md) — Appended Phase 6-R5 execution log and verification results.
+
+---
+
+### 3. Acceptance Criteria Verification
+
+- [x] Existing POS and Inventory spotlights preserved with official mockups and copy.
+- [x] Digital Commerce capability added: *"Turn your live ERP inventory into a customer-facing digital catalogue and website."*
+- [x] AI Catalogue Creation capability added: *"Create professional, catalogue-ready jewellery imagery using AI-powered image generation tools."*
+- [x] Digital Catalogue positioned for Professional & Enterprise; AI Catalogue Image Generation positioned strictly for Enterprise (`Predict • Optimise • Scale`).
+- [x] Grounded claims only: No fake customer logos, no unverified sales metrics, no third-party claims.
+- [x] Visual verification completed across Desktop (1440px), Tablet (768px), and Mobile (390px) viewports with screenshots inspected.
+- [x] TypeScript (`npx tsc --noEmit`) and production build (`npm run build`) pass with 0 errors.
+- [x] Unrelated sections (Hero, Features, AIIntelligence, Compliance, Pricing, FAQ, CTA, Footer, Login, ERP routes) remain unchanged.
+- [x] Implementation plan and log updated.
+
+**Phase 6-R5 Status**: PASSED.
+
 
 
 

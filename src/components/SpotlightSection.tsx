@@ -1,5 +1,6 @@
 import SpotlightPos from "@/components/SpotlightPos";
 import SpotlightInventory from "@/components/SpotlightInventory";
+import SpotlightDigitalCommerce from "@/components/SpotlightDigitalCommerce";
 
 export default function SpotlightSection() {
   return (
@@ -9,6 +10,7 @@ export default function SpotlightSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-24 md:space-y-32">
         <SpotlightPos />
         <SpotlightInventory />
+        <SpotlightDigitalCommerce />
       </div>
     </section>
   );
