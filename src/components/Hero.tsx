@@ -52,7 +52,7 @@ export default function Hero() {
             {/* Supporting Copy & SEO */}
             <p className="text-sm sm:text-base text-brown-500 leading-relaxed mb-6 max-w-xl">
               <strong className="font-semibold text-foreground">From recording transactions to understanding your business.</strong>{" "}
-              Octis connects jewellery billing, inventory, metal, vendors, karigars, customers, pricing, accounting and business intelligence in one secure cloud platform — built specifically for Indian jewellery retailers.
+              Octis is the AI-Powered Jewellery ERP and Jewellery Management Software for Indian Jewellery Retailers — connecting billing, inventory, metal, vendors, karigars, customers, pricing, accounting and business intelligence in one secure cloud platform.
             </p>
 
             {/* Dual CTA Buttons */}

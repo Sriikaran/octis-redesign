@@ -65,7 +65,7 @@ export default function Faq() {
     {
       question: "Can OCTIS provide purchase recommendations?",
       answer:
-        "AI Purchase Recommendations are included in the Enterprise plan.",
+        "AI Purchase Recommendations are included in the Enterprise plan to support purchasing decisions. Recommendations are designed to support human judgment and operational planning, without guaranteeing demand or profitability outcomes.",
     },
     {
       question: "Does OCTIS support business-specific customisation?",
