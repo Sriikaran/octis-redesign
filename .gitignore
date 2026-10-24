@@ -31,3 +31,6 @@ yarn-error.log*
 
 # Scratch & temporary
 scratch/
+extracted_website_docx.txt
+reference/screenshots/Dashboard_*.png
+
